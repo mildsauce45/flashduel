@@ -1,5 +1,7 @@
 package models
 
+import createFourPlayers
+import createTwoPlayers
 import org.junit.Test
 
 class BoardTests {
@@ -38,13 +40,5 @@ class BoardTests {
 
         board.movePlayer(1, -3)
         assert(board.playerPositions[1] == 14) // Because the board is not responsible for collision detection
-    }
-
-    private fun createTwoPlayers(): List<Player> {
-        return listOf(Player("Player 1"), Player("Player 2"))
-    }
-
-    private fun createFourPlayers(): List<Player> {
-        return listOf(Player("Player 1"), Player("Player 2"), Player("Player 3"), Player("Player 4"))
     }
 }
