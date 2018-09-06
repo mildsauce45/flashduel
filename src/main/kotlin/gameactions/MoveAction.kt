@@ -37,9 +37,11 @@ class MoveAction(private val player: Player, private val card: Card, private val
         val newLocation = playerLocation + moveAmount
 
         // If we would move past the player (or ont top of him) we need to calculate how much we need to adjust our movement
-        if ((newLocation >= nearestOpponent && direction == Direction.RIGHT) ||
-                (newLocation <= nearestOpponent && direction == Direction.LEFT))
-            moveAmount -= (1 * dirMultiplier) + ((newLocation - nearestOpponent) * dirMultiplier)
+        moveAmount = when {
+            newLocation >= nearestOpponent && direction == Direction.RIGHT -> nearestOpponent - playerLocation - 1
+            newLocation <= nearestOpponent && direction == Direction.LEFT -> (playerLocation - nearestOpponent - 1) * -1
+            else -> moveAmount
+        }
 
         // Make the move
         game.board.movePlayer(game.getPlayerIndex(player), moveAmount)
@@ -51,7 +53,7 @@ class MoveAction(private val player: Player, private val card: Card, private val
 
     private fun pinnedRight(game: Game, playerIndex: Int, opponentIndices: List<Int>): Boolean {
         return game.board.playerPositions[playerIndex] == game.board.track.size - 1 &&
-                opponentIndices.any { game.board.playerPositions[it] == game.board.track.size - 2 }
+            opponentIndices.any { game.board.playerPositions[it] == game.board.track.size - 2 }
     }
 
     private fun isOpponentAdjacent(game: Game, playerIndex: Int, opponentIndices: List<Int>): Boolean {

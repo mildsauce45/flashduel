@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f42ea20d-69cd-4f4f-ac8e-0b2081c15184" name="Default Changelist" comment="" />
+    <list default="true" id="f42ea20d-69cd-4f4f-ac8e-0b2081c15184" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/flashduel_main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/flashduel_main.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/flashduel_test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/flashduel_test.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/gameactions/AttackAction.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/gameactions/AttackAction.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/gameactions/MoveAction.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/gameactions/MoveAction.kt" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -62,14 +69,86 @@
         </counts>
       </usages-collector>
     </session>
+    <session id="1615498613">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="2" />
+          <entry key="project.open.time.1" value="1" />
+          <entry key="project.open.time.18" value="1" />
+          <entry key="project.open.time.5" value="1" />
+          <entry key="project.opened" value="3" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="gradle" value="1" />
+          <entry key="kt" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="Groovy" value="1" />
+          <entry key="Kotlin" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="kt" value="1924" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="Kotlin" value="1924" />
+        </counts>
+      </usages-collector>
+    </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/build.gradle">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="9" selection-start-column="9" selection-end-column="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/kotlin/TestHelpers.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret line="8" selection-start-line="8" selection-end-line="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/kotlin/gameaction/MoveActionTests.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="7" column="25" lean-forward="true" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/kotlin/gameactions/AttackAction.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="476">
+              <caret line="28" column="34" selection-start-line="28" selection-start-column="34" selection-end-line="28" selection-end-column="34" />
+              <folding>
+                <element signature="e#21#198#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/kotlin/engine/GameEngineExtensions.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="28" column="1" selection-start-line="28" selection-start-column="1" selection-end-line="28" selection-end-column="1" />
+            <state relative-caret-position="442">
+              <caret line="26" column="9" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="9" />
               <folding>
                 <element signature="e#16#55#0" expanded="true" />
               </folding>
@@ -78,99 +157,12 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/kotlin/engine/Direction.kt">
+        <entry file="file://$PROJECT_DIR$/src/test/kotlin/gameaction/AttackActionTests.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="1" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/kotlin/gameactions/MoveAction.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="329">
-              <caret line="41" column="26" selection-start-line="41" selection-start-column="26" selection-end-line="41" selection-end-column="26" />
+            <state relative-caret-position="279">
+              <caret line="55" column="34" selection-start-line="55" selection-start-column="34" selection-end-line="55" selection-end-column="34" />
               <folding>
-                <element signature="e#21#118#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/kotlin/models/BoardTests.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="42" column="5" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
-              <folding>
-                <element signature="e#16#86#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/kotlin/models/PlayerTests.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="52">
-              <caret line="10" column="24" selection-start-line="10" selection-start-column="24" selection-end-line="10" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/kotlin/models/DeckTests.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1054">
-              <caret line="62" column="1" selection-start-line="62" selection-start-column="1" selection-end-line="62" selection-end-column="1" />
-              <folding>
-                <element signature="e#16#56#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/kotlin/models/GameTests.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="578">
-              <caret line="34" column="5" lean-forward="true" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
-              <folding>
-                <element signature="e#16#59#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/kotlin/TestHelpers.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/kotlin/gameaction/MoveActionTests.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="166">
-              <caret line="59" column="35" lean-forward="true" selection-start-line="59" selection-start-column="35" selection-end-line="59" selection-end-column="35" />
-              <folding>
-                <element signature="e#20#227#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/kotlin/gameactions/AttackAction.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="10" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="10" />
-              <folding>
-                <element signature="e#21#108#0" expanded="true" />
+                <element signature="e#20#63#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -188,10 +180,13 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="GradleLocalSettings">
     <option name="myGradleHomes">
       <map>
-        <entry key="$PROJECT_DIR$" value="C:\Users\jpinchot\.gradle\wrapper\dists\gradle-4.8-bin\divx0s2uj4thofgytb7gf9fsi\gradle-4.8" />
+        <entry key="$PROJECT_DIR$" value="C:\Users\jmpin\.gradle\wrapper\dists\gradle-4.8-bin\divx0s2uj4thofgytb7gf9fsi\gradle-4.8" />
       </map>
     </option>
     <option name="myGradleVersions">
@@ -380,7 +375,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="6141715561533" />
+        <entry key="$PROJECT_DIR$" value="6142273959808" />
         <entry key="$PROJECT_DIR$/.gradle" value="0" />
         <entry key="$PROJECT_DIR$/build.gradle" value="1825470516" />
         <entry key="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" value="2007532874" />
@@ -540,29 +535,33 @@
         <option value="$PROJECT_DIR$/src/main/kotlin/models/Game.kt" />
         <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/src/test/kotlin/models/GameTests.kt" />
-        <option value="$PROJECT_DIR$/src/main/kotlin/gameactions/AttackAction.kt" />
         <option value="$PROJECT_DIR$/src/main/kotlin/engine/GameEngineExtensions.kt" />
         <option value="$PROJECT_DIR$/src/main/kotlin/engine/Direction.kt" />
-        <option value="$PROJECT_DIR$/src/main/kotlin/gameactions/MoveAction.kt" />
         <option value="$PROJECT_DIR$/src/test/kotlin/gameaction/MoveActionTests.kt" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/test/kotlin/TestHelpers.kt" />
         <option value="$PROJECT_DIR$/src/test/kotlin/models/BoardTests.kt" />
+        <option value="$PROJECT_DIR$/src/main/kotlin/gameactions/MoveAction.kt" />
+        <option value="$PROJECT_DIR$/src/test/kotlin/gameaction/AttackActionTests.kt" />
+        <option value="$PROJECT_DIR$/src/main/kotlin/gameactions/AttackAction.kt" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="2186" />
-    <option name="y" value="157" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="520" />
+    <option name="y" value="-32" />
     <option name="width" value="1410" />
-    <option name="height" value="841" />
+    <option name="height" value="842" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -580,6 +579,27 @@
               <item name="flashduel" type="b2602c69:ProjectViewProjectNode" />
               <item name="flashduel" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+            <path>
+              <item name="flashduel" type="b2602c69:ProjectViewProjectNode" />
+              <item name="flashduel" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="kotlin" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="flashduel" type="b2602c69:ProjectViewProjectNode" />
+              <item name="flashduel" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="kotlin" type="462c0819:PsiDirectoryNode" />
+              <item name="gameactions" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="flashduel" type="b2602c69:ProjectViewProjectNode" />
+              <item name="flashduel" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
             </path>
             <path>
@@ -589,16 +609,28 @@
               <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="kotlin" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="flashduel" type="b2602c69:ProjectViewProjectNode" />
+              <item name="flashduel" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="kotlin" type="462c0819:PsiDirectoryNode" />
+              <item name="gameaction" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1536196545394" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Kotlin" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -612,7 +644,39 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.BoardTests">
+  <component name="RunManager" selected="JUnit.AttackActionTests.test_unblocked_attack_kills">
+    <configuration name="AttackActionTests.test_can_attack_at_proper_distance" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="flashduel_test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="gameaction.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="gameaction" />
+      <option name="MAIN_CLASS_NAME" value="gameaction.AttackActionTests" />
+      <option name="METHOD_NAME" value="test_can_attack_at_proper_distance" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AttackActionTests.test_unblocked_attack_kills" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="flashduel_test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="gameaction.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="gameaction" />
+      <option name="MAIN_CLASS_NAME" value="gameaction.AttackActionTests" />
+      <option name="METHOD_NAME" value="test_unblocked_attack_kills" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="BoardTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="flashduel_test" />
       <option name="PACKAGE_NAME" value="models" />
@@ -631,22 +695,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="GameTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="flashduel_test" />
-      <option name="PACKAGE_NAME" value="models" />
-      <option name="MAIN_CLASS_NAME" value="models.GameTests" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MoveActionTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="flashduel_test" />
-      <option name="PACKAGE_NAME" value="gameaction" />
-      <option name="MAIN_CLASS_NAME" value="gameaction.MoveActionTests" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="MoveActionTests.test_cant_move_past_opponent" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="flashduel_test" />
       <option name="PACKAGE_NAME" value="gameaction" />
@@ -658,19 +706,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.MoveActionTests" />
-      <item itemvalue="JUnit.GameTests" />
       <item itemvalue="JUnit.MoveActionTests.test_cant_move_past_opponent" />
       <item itemvalue="JUnit.BoardTests.test_two_player_game_initialized_properly" />
       <item itemvalue="JUnit.BoardTests" />
+      <item itemvalue="JUnit.AttackActionTests.test_can_attack_at_proper_distance" />
+      <item itemvalue="JUnit.AttackActionTests.test_unblocked_attack_kills" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.AttackActionTests.test_unblocked_attack_kills" />
+        <item itemvalue="JUnit.AttackActionTests.test_can_attack_at_proper_distance" />
+        <item itemvalue="JUnit.MoveActionTests.test_cant_move_past_opponent" />
         <item itemvalue="JUnit.BoardTests" />
         <item itemvalue="JUnit.BoardTests.test_two_player_game_initialized_properly" />
-        <item itemvalue="JUnit.MoveActionTests.test_cant_move_past_opponent" />
-        <item itemvalue="JUnit.GameTests" />
-        <item itemvalue="JUnit.MoveActionTests" />
       </list>
     </recent_temporary>
   </component>
@@ -685,35 +733,35 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="MoveActionTests_test_pinned_check_works - 2018.08.28 at 14h 50m 13s.xml">
-      <configuration name="MoveActionTests.test_pinned_check_works" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="MoveActionTests - 2018.08.28 at 14h 50m 56s.xml">
-      <configuration name="MoveActionTests" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="MoveActionTests - 2018.08.28 at 14h 53m 54s.xml">
-      <configuration name="MoveActionTests" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="GameTests - 2018.08.28 at 14h 55m 05s.xml">
-      <configuration name="GameTests" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="MoveActionTests_test_cant_move_past_opponent - 2018.08.28 at 15h 58m 28s.xml">
-      <configuration name="MoveActionTests.test_cant_move_past_opponent" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="MoveActionTests_test_cant_move_past_opponent - 2018.08.28 at 16h 04m 18s.xml">
-      <configuration name="MoveActionTests.test_cant_move_past_opponent" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="MoveActionTests_test_cant_move_past_opponent - 2018.08.29 at 09h 20m 07s.xml">
-      <configuration name="MoveActionTests.test_cant_move_past_opponent" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="MoveActionTests_test_cant_move_past_opponent - 2018.08.29 at 09h 20m 31s.xml">
-      <configuration name="MoveActionTests.test_cant_move_past_opponent" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="BoardTests_test_two_player_game_initialized_properly - 2018.08.29 at 09h 35m 56s.xml">
       <configuration name="BoardTests.test_two_player_game_initialized_properly" configurationId="JUnit" />
     </history-entry>
     <history-entry file="BoardTests - 2018.08.29 at 09h 36m 02s.xml">
       <configuration name="BoardTests" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MoveActionTests_test_cant_move_past_opponent - 2018.08.29 at 12h 14m 13s.xml">
+      <configuration name="MoveActionTests.test_cant_move_past_opponent" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="AttackActionTests_test_can_attack_at_proper_distance - 2018.09.05 at 12h 03m 47s.xml">
+      <configuration name="AttackActionTests.test_can_attack_at_proper_distance" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="AttackActionTests_test_can_attack_at_proper_distance - 2018.09.05 at 12h 05m 08s.xml">
+      <configuration name="AttackActionTests.test_can_attack_at_proper_distance" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="AttackActionTests_test_can_attack_at_proper_distance - 2018.09.05 at 12h 06m 26s.xml">
+      <configuration name="AttackActionTests.test_can_attack_at_proper_distance" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="AttackActionTests_test_can_attack_at_proper_distance - 2018.09.05 at 12h 16m 39s.xml">
+      <configuration name="AttackActionTests.test_can_attack_at_proper_distance" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="AttackActionTests_test_can_attack_at_proper_distance - 2018.09.05 at 12h 20m 35s.xml">
+      <configuration name="AttackActionTests.test_can_attack_at_proper_distance" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="AttackActionTests_test_can_attack_at_proper_distance - 2018.09.05 at 12h 21m 01s.xml">
+      <configuration name="AttackActionTests.test_can_attack_at_proper_distance" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="AttackActionTests_test_unblocked_attack_kills - 2018.09.05 at 12h 34m 24s.xml">
+      <configuration name="AttackActionTests.test_unblocked_attack_kills" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TodoView">
@@ -726,25 +774,26 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="2186" y="157" width="1410" height="841" extended-state="0" />
-    <editor active="true" />
+    <frame x="-6" y="-6" width="1513" height="973" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25703704" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12027492" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
       <window_info id="Favorites" order="4" side_tool="true" />
+      <window_info id="Image Layers" order="5" />
+      <window_info id="Capture Tool" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32956153" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39886847" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32897863" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39786223" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32956153" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32956153" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.32897863" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Build" order="10" weight="0.32956153" />
+      <window_info anchor="bottom" id="Version Control" order="9" />
+      <window_info anchor="bottom" id="Build" order="10" weight="0.32897863" />
       <window_info anchor="bottom" id="Messages" order="11" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -753,6 +802,8 @@
       <window_info anchor="right" id="Gradle" order="4" />
       <window_info anchor="right" id="Palette&#9;" order="5" />
       <window_info anchor="right" id="Maven Projects" order="6" />
+      <window_info anchor="right" id="Capture Analysis" order="7" />
+      <window_info anchor="right" id="Theme Preview" order="8" />
     </layout>
   </component>
   <component name="UnknownFeatures">
@@ -761,55 +812,27 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/test/kotlin/gameaction/MoveActionTests.kt</url>
+          <line>79</line>
+          <properties />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
   <component name="editorHistoryManager">
-    <entry file="jar://C:/Program Files/Java/jdk-10.0.2/lib/src.zip!/java.base/java/util/AbstractList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="72" column="52" selection-start-line="72" selection-start-column="52" selection-end-line="72" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-10.0.2/lib/src.zip!/java.base/java/util/AbstractCollection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="60" column="22" selection-start-line="60" selection-start-column="22" selection-end-line="60" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/1.2.61/5146b44c50f5e853d6d77150089b6281d72fe736/kotlin-stdlib-1.2.61-sources.jar!/kotlin/collections/TypeAliases.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="12" column="70" lean-forward="true" selection-start-line="12" selection-start-column="70" selection-end-line="12" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-10.0.2/lib/src.zip!/java.base/java/util/Vector.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1366">
-          <caret line="162" column="11" selection-start-line="162" selection-start-column="11" selection-end-line="162" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-10.0.2/lib/src.zip!/java.base/java/util/RandomAccess.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="313">
-          <caret line="66" column="17" selection-start-line="66" selection-start-column="17" selection-end-line="66" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-10.0.2/lib/src.zip!/java.base/java/util/Random.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="353">
-          <caret line="385" column="15" selection-start-line="385" selection-start-column="15" selection-end-line="385" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-10.0.2/lib/src.zip!/java.base/java/util/AbstractList.java" />
+    <entry file="jar://C:/Program Files/Java/jdk-10.0.2/lib/src.zip!/java.base/java/util/AbstractCollection.java" />
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/1.2.61/5146b44c50f5e853d6d77150089b6281d72fe736/kotlin-stdlib-1.2.61-sources.jar!/kotlin/collections/TypeAliases.kt" />
+    <entry file="jar://C:/Program Files/Java/jdk-10.0.2/lib/src.zip!/java.base/java/util/Vector.java" />
+    <entry file="jar://C:/Program Files/Java/jdk-10.0.2/lib/src.zip!/java.base/java/util/RandomAccess.java" />
+    <entry file="jar://C:/Program Files/Java/jdk-10.0.2/lib/src.zip!/java.base/java/util/Random.java" />
     <entry file="file://$PROJECT_DIR$/src/test/kotlin/DeckTests.kt" />
-    <entry file="file://$PROJECT_DIR$/build/reports/tests/test/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2124" />
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/build/reports/tests/test/index.html" />
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/junit/junit/4.12/a6c32b40bf3d76eca54e3c601e5d1470c86fcdfa/junit-4.12-sources.jar!/org/junit/internal/runners/model/EachTestNotifier.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -831,20 +854,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-10.0.2/lib/src.zip!/java.base/java/util/ArrayList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="142">
-          <caret line="151" column="11" selection-start-line="151" selection-start-column="11" selection-end-line="151" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-common/1.2.61/bb8aafdddb6c895ba1a9646eddabdb844eb544fb/kotlin-stdlib-common-1.2.61-sources.jar!/generated/_Collections.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="1544" column="43" selection-start-line="1544" selection-start-column="43" selection-end-line="1544" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-10.0.2/lib/src.zip!/java.base/java/util/ArrayList.java" />
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-common/1.2.61/bb8aafdddb6c895ba1a9646eddabdb844eb544fb/kotlin-stdlib-common-1.2.61-sources.jar!/generated/_Collections.kt" />
     <entry file="file://$PROJECT_DIR$/src/main/kotlin/models/Card.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -856,11 +867,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="8" selection-start-line="8" selection-end-line="8" />
-          <folding>
-            <element signature="n#!!block;n#draw#0;n#!!block;n#Deck#0" />
-            <element signature="n#!!block;n#getCardList#0;n#!!block;n#Deck#0" />
-            <element signature="n#!!block;n#shuffle#0;n#!!block;n#Deck#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -879,13 +885,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="53" selection-start-line="15" selection-start-column="53" selection-end-line="15" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/kotlin/models/Player.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -900,33 +899,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/kotlin/gameactions/AttackAction.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="10" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="10" />
-          <folding>
-            <element signature="e#21#108#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/kotlin/engine/GameEngineExtensions.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="28" column="1" selection-start-line="28" selection-start-column="1" selection-end-line="28" selection-end-column="1" />
-          <folding>
-            <element signature="e#16#55#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/kotlin/engine/Direction.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="1" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="400">
@@ -934,36 +906,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/kotlin/gameaction/MoveActionTests.kt">
+    <entry file="file://$PROJECT_DIR$/src/main/kotlin/engine/Direction.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="59" column="35" lean-forward="true" selection-start-line="59" selection-start-column="35" selection-end-line="59" selection-end-column="35" />
-          <folding>
-            <element signature="e#20#227#0" expanded="true" />
-          </folding>
+        <state>
+          <caret line="11" column="1" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/kotlin/TestHelpers.kt">
+    <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+        <state>
+          <caret column="9" selection-start-column="9" selection-end-column="9" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/kotlin/models/BoardTests.kt">
+    <entry file="file://$PROJECT_DIR$/src/test/kotlin/models/PlayerTests.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="42" column="5" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
-          <folding>
-            <element signature="e#16#86#0" expanded="true" />
-          </folding>
+        <state>
+          <caret line="12" column="5" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/kotlin/models/DeckTests.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1054">
+        <state>
           <caret line="62" column="1" selection-start-line="62" selection-start-column="1" selection-end-line="62" selection-end-column="1" />
           <folding>
             <element signature="e#16#56#0" expanded="true" />
@@ -973,27 +939,71 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/kotlin/models/GameTests.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="34" column="5" lean-forward="true" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
+        <state>
+          <caret line="34" column="5" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
           <folding>
             <element signature="e#16#59#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/kotlin/models/PlayerTests.kt">
+    <entry file="file://$PROJECT_DIR$/src/test/kotlin/TestHelpers.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="52">
-          <caret line="10" column="24" selection-start-line="10" selection-start-column="24" selection-end-line="10" selection-end-column="24" />
+        <state>
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/kotlin/gameactions/MoveAction.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="41" column="26" selection-start-line="41" selection-start-column="26" selection-end-line="41" selection-end-column="26" />
+        <state relative-caret-position="342">
+          <caret line="43" column="9" lean-forward="true" selection-start-line="43" selection-start-column="9" selection-end-line="43" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/kotlin/models/BoardTests.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="34" column="31" selection-start-line="34" selection-start-column="31" selection-end-line="34" selection-end-column="31" />
           <folding>
-            <element signature="e#21#118#0" expanded="true" />
+            <element signature="e#16#86#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/kotlin/gameaction/MoveActionTests.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="25" lean-forward="true" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/kotlin/engine/GameEngineExtensions.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="9" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="9" />
+          <folding>
+            <element signature="e#16#55#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/kotlin/gameaction/AttackActionTests.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="55" column="34" selection-start-line="55" selection-start-column="34" selection-end-line="55" selection-end-column="34" />
+          <folding>
+            <element signature="e#20#63#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/kotlin/gameactions/AttackAction.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="28" column="34" selection-start-line="28" selection-start-column="34" selection-end-line="28" selection-end-column="34" />
+          <folding>
+            <element signature="e#21#198#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1015,7 +1025,7 @@
       </state>
       <state key="FacetStructureConfigurable.UI">
         <settings>
-          <last-edited>Kotlin</last-edited>
+          <last-edited>No facets are configured</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -1038,7 +1048,7 @@
       </state>
       <state key="JdkListConfigurable.UI">
         <settings>
-          <last-edited>10</last-edited>
+          <last-edited>1.7</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -1055,7 +1065,6 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
-                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>
