@@ -10,6 +10,9 @@ import models.Player
 import kotlin.math.abs
 
 class PushAction(private val player: Player, private val card: Card): GameAction {
+    override val cardsToDiscard: List<Card>
+        get() = listOf(card)
+
     override fun canTake(game: Game): Boolean {
         val playerLocation = game.getPlayerLocation(player)
         val opponentLocations = game.getOpponentLocations(player)

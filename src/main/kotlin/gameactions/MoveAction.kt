@@ -6,6 +6,9 @@ import models.Game
 import models.Player
 
 class MoveAction(private val player: Player, private val card: Card, private val direction: Direction) : GameAction {
+    override val cardsToDiscard: List<Card>
+        get() = listOf(card)
+
     override fun canTake(game: Game): Boolean {
         val opponentIndices = game.getOpponentIndices(player)
         val playerIndex = game.getPlayerIndex(player)

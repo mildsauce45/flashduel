@@ -8,6 +8,19 @@ import org.junit.Assert.*
 import org.junit.Test
 
 class PushActionTests {
+
+    @Test
+    fun test_cards_to_discard() {
+        val game = createTestGame()
+
+        val action = PushAction(game.players[0], Card(4))
+
+        val discard = action.cardsToDiscard
+
+        assertEquals(discard.size, 1)
+        assertEquals(discard[0], Card(4))
+    }
+
     @Test
     fun test_can_push_when_adjacent() {
         val game = createTestGame()

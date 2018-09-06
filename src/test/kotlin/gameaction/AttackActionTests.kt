@@ -8,6 +8,19 @@ import org.junit.Assert.*
 import org.junit.Test
 
 class AttackActionTests {
+
+    @Test
+    fun test_cards_to_discard() {
+        val game = createTestGame()
+
+        val action = AttackAction(game.players[0], listOf(Card(2), Card(2)))
+
+        val discard = action.cardsToDiscard
+
+        assertEquals(discard.size, 2)
+        assertEquals(discard.count { it.value == 2 }, 2)
+    }
+
     @Test
     fun test_can_attack_at_proper_distance() {
         val game = createTestGame()
@@ -15,7 +28,7 @@ class AttackActionTests {
         setupGameForAction(game)
 
         val hand = listOf(Card(3), Card(3))
-        var action = AttackAction(game.players.first(), hand)
+        var action = AttackAction(game.players[0], hand)
 
         assertTrue(action.canTake(game))
 
@@ -32,7 +45,7 @@ class AttackActionTests {
 
         val hand = listOf(Card(2))
 
-        var action = AttackAction(game.players.first(), hand)
+        var action = AttackAction(game.players[0], hand)
 
         assertFalse(action.canTake(game))
 
@@ -47,7 +60,7 @@ class AttackActionTests {
 
         setupGameForAction(game)
 
-        val action = AttackAction(game.players.first(), listOf(Card(3)))
+        val action = AttackAction(game.players[0], listOf(Card(3)))
 
         assertTrue(action.canTake(game))
 
