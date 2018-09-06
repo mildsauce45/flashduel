@@ -31,7 +31,10 @@ class DashAttackAction(private val player: Player, private val dashCard: Card, v
             abs(game.getPlayerLocation(it) - playerLocation) == opponentDistance
         }
 
-        val direction = if (game.getPlayerLocation(targetedOpponent) - playerLocation > 0) Direction.RIGHT else Direction.LEFT
+        val direction = when {
+            game.getPlayerLocation(targetedOpponent) - playerLocation > 0 -> Direction.RIGHT
+            else -> Direction.LEFT
+        }
 
         // The move action handles everything, including stopping at the opponent if you choose a dash card
         // greater than the space between you and the opponent

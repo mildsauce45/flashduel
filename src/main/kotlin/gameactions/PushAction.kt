@@ -28,7 +28,10 @@ class PushAction(private val player: Player, private val card: Card): GameAction
             abs(game.getPlayerLocation(it) - playerLocation) == 1
         }
 
-        val movementMultiplier = if (game.getPlayerLocation(targetedOpponent) > playerLocation) 1 else  -1
+        val movementMultiplier = when {
+            game.getPlayerLocation(targetedOpponent) > playerLocation -> 1
+            else -> -1
+        }
 
         game.board.movePlayer(game.getPlayerIndex(targetedOpponent), card.value * movementMultiplier)
     }
