@@ -23,9 +23,7 @@ class AttackActionTests {
 
     @Test
     fun test_can_attack_at_proper_distance() {
-        val game = createTestGame()
-
-        setupGameForAction(game)
+        val game = setupGame()
 
         val hand = listOf(Card(3), Card(3))
         var action = AttackAction(game.players[0], hand)
@@ -39,9 +37,7 @@ class AttackActionTests {
 
     @Test
     fun test_cannot_attack_outside_distance() {
-        val game = createTestGame()
-
-        setupGameForAction(game)
+        val game = setupGame()
 
         val hand = listOf(Card(2))
 
@@ -56,9 +52,7 @@ class AttackActionTests {
 
     @Test
     fun test_unblocked_attack_kills() {
-        val game = createTestGame()
-
-        setupGameForAction(game)
+        val game = setupGame()
 
         val action = AttackAction(game.players[0], listOf(Card(3)))
 
@@ -69,8 +63,12 @@ class AttackActionTests {
         assertTrue(game.isGameOver)
     }
 
-    private fun setupGameForAction(game: Game) {
+    private fun setupGame(): Game {
+        val game = createTestGame()
+
         game.board.movePlayer(0, 7)
         game.board.movePlayer(1, -7)
+
+        return game
     }
 }
