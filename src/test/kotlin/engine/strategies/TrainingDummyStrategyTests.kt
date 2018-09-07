@@ -1,7 +1,7 @@
 package engine.strategies
 
 import createTestGame
-import gameactions.MoveAction
+import gameactions.*
 import models.Game
 import models.Player
 import org.junit.Assert.*
@@ -31,9 +31,26 @@ class TrainingDummyStrategyTests {
         game.currentPlayer.strategy.startTurn(game) // Draws the top card
         val action = game.currentPlayer.strategy.getNextAction(game)
 
-        when (action){
+        when (action) {
             is MoveAction -> assertEquals(topCard, action.cardsToDiscard[0])
             else -> fail("Should be a move action here")
+        }
+    }
+
+    @Test
+    fun test_pushes_when_adjacent() {
+        val game = setupTrainingDummyGame()
+        val topCard = game.deck.peek()
+
+        game.board.movePlayer(0, 8)
+        game.board.movePlayer(1, -8)
+
+        game.currentPlayer.strategy.startTurn(game)
+        val action = game.currentPlayer.strategy.getNextAction(game)
+
+        when (action) {
+            is PushAction -> assertEquals(topCard, action.cardsToDiscard[0])
+            else -> fail("When adjacent we should be pushing")
         }
     }
 

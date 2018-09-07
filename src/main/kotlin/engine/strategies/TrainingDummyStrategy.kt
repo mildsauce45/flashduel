@@ -1,11 +1,12 @@
 package engine.strategies
 
 import engine.Direction
-import gameactions.GameAction
-import gameactions.MoveAction
-import gameactions.PushAction
+import engine.getOpponentLocations
+import engine.getPlayerLocation
+import gameactions.*
 import models.Card
 import models.Game
+import kotlin.math.abs
 
 // ** Bots turn **
 // 1) Attacks if it can, always powering up with pairs, triples, etc
@@ -25,6 +26,16 @@ class TrainingDummyStrategy: PlayerStrategy {
     }
 
     override fun getNextAction(game: Game): GameAction {
+        if (isAdjacentToOpponent(game))
+            return PushAction(game.currentPlayer, _thisTurnsCard)
+
         return MoveAction(game.currentPlayer, _thisTurnsCard, Direction.LEFT)
+    }
+
+    private fun isAdjacentToOpponent(game: Game): Boolean {
+        val playerLocation = game.getPlayerLocation(game.currentPlayer)
+        val opponentLocations = game.getOpponentLocations(game.currentPlayer)
+
+        return opponentLocations.any { abs(it - playerLocation) == 1 }
     }
 }
