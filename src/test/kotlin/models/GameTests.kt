@@ -1,36 +1,58 @@
 package models
 
 import createTestGame
+import org.junit.Assert.*
 import org.junit.Test
 
 class GameTests {
+
     @Test
-    fun test_first_player_is_current_player() {
+    fun test_start_game_works() {
         val game = createTestGame()
-        assert(game.players[0] == game.currentPlayer)
+
+        assertEquals(game.currentState, GameState.START_GAME)
+
+        game.start()
+
+        assertEquals(game.currentState, GameState.START_TURN)
+        assertEquals(game.players[0].hand.size, Player.INITIAL_HAND_SIZE)
+        assertEquals(game.players[1].hand.size, Player.INITIAL_HAND_SIZE)
+
+        // Now let's test that calling start twice accidentally doesn't really do anything
+        val currentPlayer = game.currentPlayer
+        val deckSize = game.deck.remaining
+
+        game.start()
+
+        assertEquals(game.currentPlayer, currentPlayer)
+        assertEquals(game.deck.remaining, deckSize)
+        assertEquals(game.currentState, GameState.START_TURN)
     }
 
     @Test
     fun test_game_ends_when_player_hit() {
         var game = createTestGame()
-        assert(!game.isGameOver)
+        assertFalse(game.isGameOver)
 
         game.players[0].takeHit()
-        assert(game.isGameOver)
+        assertTrue(game.isGameOver)
 
         game = createTestGame()
         game.players[1].takeHit()
-        assert(game.isGameOver)
+        assertTrue(game.isGameOver)
     }
 
     @Test
     fun test_switch_player_works() {
         val game = createTestGame()
+        game.start()
+
+        val startingPlayer = game.currentPlayer
 
         game.switchPlayer()
-        assert(game.currentPlayer == game.players[1])
+        assertNotEquals(game.currentPlayer, startingPlayer)
 
         game.switchPlayer()
-        assert(game.currentPlayer == game.players[0])
+        assertEquals(game.currentPlayer, startingPlayer)
     }
 }

@@ -21,7 +21,15 @@ class Deck {
         if (remaining > 0)
             return _cards.removeAt(0)
 
-        throw IllegalStateException("cannot draw from an empty deck")
+        throw IllegalStateException("Cannot draw from an empty deck")
+    }
+
+    /** This should only be used for testing purposes right now **/
+    fun peek(): Card {
+        if (remaining > 0)
+            return _cards[0]
+
+        throw IllegalStateException("Cannot peek at an empty deck")
     }
 
     private fun getCardList() {

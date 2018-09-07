@@ -3,6 +3,7 @@ package models
 import org.junit.Test
 
 class PlayerTests {
+
     @Test
     fun test_damaged_player_dies() {
         val player = testPlayer()

@@ -1,8 +1,14 @@
 package models
 
+import engine.strategies.HumanStrategy
+import engine.strategies.PlayerStrategy
 import java.util.*
 
-class Player(val name: String) {
+class Player(val name: String, val strategy: PlayerStrategy = HumanStrategy()) {
+    companion object {
+        const val INITIAL_HAND_SIZE = 5
+    }
+
     private var hitsRemaining = 1
 
     var isRecovering = false
