@@ -9,7 +9,7 @@ import models.Game
 import models.Player
 import kotlin.math.abs
 
-class DashAttackAction(private val player: Player, private val dashCard: Card, val attackCards: List<Card>) : GameAction {
+class DashAttackAction(private val player: Player, val dashCard: Card, val attackCards: List<Card>) : GameAction {
     override val cardsToDiscard: List<Card>
         get() = attackCards.plusElement(dashCard)
 

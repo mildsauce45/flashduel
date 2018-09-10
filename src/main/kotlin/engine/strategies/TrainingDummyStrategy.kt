@@ -1,6 +1,7 @@
 package engine.strategies
 
 import engine.Direction
+import engine.getDistanceToClosestOpponent
 import engine.getOpponentLocations
 import engine.getPlayerLocation
 import gameactions.*
@@ -26,10 +27,30 @@ class TrainingDummyStrategy: PlayerStrategy {
     }
 
     override fun getNextAction(game: Game): GameAction {
+        val cardsToAttackWith = getAttackCardsIfAble(game)
+        if (cardsToAttackWith.isNotEmpty())
+            return AttackAction(game.currentPlayer, cardsToAttackWith)
+
         if (isAdjacentToOpponent(game))
             return PushAction(game.currentPlayer, _thisTurnsCard)
 
+        val (dashCard, dashAttackCards) = getDashAttackIfAble(game)
+        if (dashCard != null && dashAttackCards.isNotEmpty())
+            return DashAttackAction(game.currentPlayer, dashCard, dashAttackCards)
+
         return MoveAction(game.currentPlayer, _thisTurnsCard, Direction.LEFT)
+    }
+
+    private fun getAttackCardsIfAble(game: Game): List<Card> {
+        val distanceToOpponent = game.currentPlayer.getDistanceToClosestOpponent(game)
+        val distinctCardValues = game.currentPlayer.hand.map { it.value }.distinct()
+
+        for (cv in distinctCardValues) {
+            if (cv == distanceToOpponent)
+                return game.currentPlayer.hand.filter { it.value == cv }
+        }
+
+        return emptyList()
     }
 
     private fun isAdjacentToOpponent(game: Game): Boolean {
@@ -37,5 +58,16 @@ class TrainingDummyStrategy: PlayerStrategy {
         val opponentLocations = game.getOpponentLocations(game.currentPlayer)
 
         return opponentLocations.any { abs(it - playerLocation) == 1 }
+    }
+
+    private fun getDashAttackIfAble(game: Game): Pair<Card?, List<Card>> {
+        val allCardsButThisTurns = game.currentPlayer.hand.take(game.currentPlayer.hand.size - 1)
+        val distanceToClosestOpponent = game.currentPlayer.getDistanceToClosestOpponent(game)
+
+        val lookingForCardValue = distanceToClosestOpponent - _thisTurnsCard.value
+        if (allCardsButThisTurns.any { it.value == lookingForCardValue})
+            return Pair(_thisTurnsCard, allCardsButThisTurns.filter { it.value == lookingForCardValue })
+
+        return Pair(null, emptyList()) // Cannot dash attack
     }
 }

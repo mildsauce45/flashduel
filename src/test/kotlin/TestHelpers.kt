@@ -13,23 +13,20 @@ fun createFourPlayers(): List<Player> {
     return listOf(Player("Player 1"), Player("Player 2"), Player("Player 3"), Player("Player 4"))
 }
 
-fun createTestGame(deck: Deck = Deck(), board: Board = Board()): Game {
-    val players = createTwoPlayers()
+fun createTestGame(deck: Deck = Deck(), playersProducer: () -> List<Player> = ::createTwoPlayers): Game {
+    val players = playersProducer()
+    val board = Board()
 
     board.initGame(players)
 
     return Game(players, deck, board)
 }
 
-fun createTestGame(strategies: List<PlayerStrategy>): Game {
+fun createPlayersFromStrategies(strategies: List<PlayerStrategy>): List<Player> {
     val players = ArrayList<Player>()
 
     for (i in 0 until strategies.size)
         players.add(Player("Player ${i + 1}", strategies[i]))
 
-    val board = Board()
-    val deck = Deck()
-
-    board.initGame(players)
-    return Game(players, deck, board)
+    return players
 }

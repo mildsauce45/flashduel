@@ -2,7 +2,7 @@ package models
 
 import java.util.*
 
-class Deck {
+class Deck(orderedDeck: List<Card> = emptyList()) {
     companion object {
         const val CARDS_PER_NUM = 5
     }
@@ -13,8 +13,14 @@ class Deck {
         get() = _cards.size
 
     init {
-        getCardList()
-        shuffle()
+        // Default behaviour is to do everything correctly :)
+        if (orderedDeck.isEmpty()) {
+            getCardList()
+            shuffle()
+        }
+        else
+
+            _cards.addAll(orderedDeck)
     }
 
     fun draw(): Card {

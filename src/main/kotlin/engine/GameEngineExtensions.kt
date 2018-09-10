@@ -2,6 +2,7 @@ package engine
 
 import models.Game
 import models.Player
+import kotlin.math.abs
 
 fun Game.getPlayerIndex(player: Player): Int {
     return this.players.indexOf(player)
@@ -26,4 +27,11 @@ fun Game.getPlayerLocation(player: Player): Int {
 
 fun Game.getOpponentLocations(player: Player): List<Int> {
     return this.getOpponentIndices(player).map { this.board.playerPositions[it] }
+}
+
+fun Player.getDistanceToClosestOpponent(game: Game): Int {
+    val playerLocation = game.getPlayerLocation(this)
+    val opponentLocations = game.getOpponentLocations(this)
+
+    return opponentLocations.map { abs(playerLocation - it) }.min()!!
 }
