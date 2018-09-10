@@ -13,6 +13,9 @@ class DashAttackAction(private val player: Player, val dashCard: Card, val attac
     override val cardsToDiscard: List<Card>
         get() = attackCards.plusElement(dashCard)
 
+    override val requiresReaction: Boolean
+        get() = true
+
     override fun canTake(game: Game): Boolean {
         val attackValue = attackCards.first().value
 

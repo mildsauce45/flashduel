@@ -9,6 +9,9 @@ class MoveAction(private val player: Player, private val card: Card, private val
     override val cardsToDiscard: List<Card>
         get() = listOf(card)
 
+    override val requiresReaction: Boolean
+        get() = false
+
     override fun canTake(game: Game): Boolean {
         val opponentIndices = game.getOpponentIndices(player)
         val playerIndex = game.getPlayerIndex(player)

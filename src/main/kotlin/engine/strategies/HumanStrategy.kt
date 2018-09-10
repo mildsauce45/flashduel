@@ -1,6 +1,7 @@
 package engine.strategies
 
 import gameactions.GameAction
+import gameactions.reactions.Reaction
 import models.Game
 
 class HumanStrategy: PlayerStrategy {
@@ -10,6 +11,13 @@ class HumanStrategy: PlayerStrategy {
     }
 
     override fun getNextAction(game: Game): GameAction {
+        throw NotImplementedError()
+    }
+
+    override fun getReaction(action: GameAction, game: Game): Reaction? {
+        if (!action.requiresReaction)
+            return null
+
         throw NotImplementedError()
     }
 }

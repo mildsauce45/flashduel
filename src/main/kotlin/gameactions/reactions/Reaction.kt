@@ -1,12 +1,11 @@
-package gameactions
+package gameactions.reactions
 
 import models.Card
 import models.Game
 
-interface GameAction {
+interface Reaction {
     val cardsToDiscard: List<Card>
-    val requiresReaction: Boolean
 
     fun canTake(game: Game): Boolean
-    fun takeAction(game: Game)
+    fun take(game: Game)
 }

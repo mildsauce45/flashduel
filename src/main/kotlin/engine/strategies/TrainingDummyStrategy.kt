@@ -5,6 +5,8 @@ import engine.getDistanceToClosestOpponent
 import engine.getOpponentLocations
 import engine.getPlayerLocation
 import gameactions.*
+import gameactions.reactions.Reaction
+import gameactions.reactions.RetreatReaction
 import models.Card
 import models.Game
 import kotlin.math.abs
@@ -39,6 +41,27 @@ class TrainingDummyStrategy: PlayerStrategy {
             return DashAttackAction(game.currentPlayer, dashCard, dashAttackCards)
 
         return MoveAction(game.currentPlayer, _thisTurnsCard, Direction.LEFT)
+    }
+
+    override fun getReaction(action: GameAction, game: Game): Reaction? {
+        if (action.requiresReaction) {
+            val extraCard = game.deck.draw()
+
+            game.currentPlayer.draw(extraCard)
+
+            val attackCards = when(action) {
+                is AttackAction -> action.cards
+                is DashAttackAction -> action.attackCards
+                else -> emptyList()
+            }
+
+            // Can we block?
+
+            // Retreat
+            return RetreatReaction(game.currentPlayer, extraCard) // TODO: Player assignment is WRONG
+        }
+
+        return null
     }
 
     private fun getAttackCardsIfAble(game: Game): List<Card> {

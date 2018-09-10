@@ -12,6 +12,9 @@ class AttackAction(private val player: Player, val cards: List<Card>): GameActio
     override val cardsToDiscard: List<Card>
         get() = cards
 
+    override val requiresReaction: Boolean
+        get() = true
+
     override fun canTake(game: Game): Boolean {
         val playerLocation = game.getPlayerLocation(player)
         val opponentLocations = game.getOpponentLocations(player)
