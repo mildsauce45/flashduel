@@ -1,6 +1,5 @@
 package engine.strategies
 
-import engine.Direction
 import engine.getDistanceToClosestOpponent
 import engine.getOpponentLocations
 import engine.getPlayerLocation
@@ -9,6 +8,7 @@ import gameactions.reactions.Reaction
 import gameactions.reactions.RetreatReaction
 import models.Card
 import models.Game
+import models.Player
 import kotlin.math.abs
 
 // ** Bots turn **
@@ -19,13 +19,14 @@ import kotlin.math.abs
 // ** Your turn **
 // 1) When attacked or dash attacked, draws an extra card, then blocks, if possible
 // 2) If it cannot block it retreats with the extra card it just drew
-class TrainingDummyStrategy: PlayerStrategy {
+class TrainingDummyStrategy : PlayerStrategy {
     private lateinit var _thisTurnsCard: Card
+    override lateinit var player: Player
 
     override fun startTurn(game: Game) {
         _thisTurnsCard = game.deck.draw()
 
-        game.currentPlayer.draw(_thisTurnsCard)
+        player.draw(_thisTurnsCard)
     }
 
     override fun getNextAction(game: Game): GameAction {
@@ -47,9 +48,9 @@ class TrainingDummyStrategy: PlayerStrategy {
         if (action.requiresReaction) {
             val extraCard = game.deck.draw()
 
-            game.currentPlayer.draw(extraCard)
+            player.draw(extraCard)
 
-            val attackCards = when(action) {
+            val attackCards = when (action) {
                 is AttackAction -> action.cards
                 is DashAttackAction -> action.attackCards
                 else -> emptyList()
@@ -58,37 +59,37 @@ class TrainingDummyStrategy: PlayerStrategy {
             // Can we block?
 
             // Retreat
-            return RetreatReaction(game.currentPlayer, extraCard) // TODO: Player assignment is WRONG
+            return RetreatReaction(player, extraCard)
         }
 
         return null
     }
 
     private fun getAttackCardsIfAble(game: Game): List<Card> {
-        val distanceToOpponent = game.currentPlayer.getDistanceToClosestOpponent(game)
-        val distinctCardValues = game.currentPlayer.hand.map { it.value }.distinct()
+        val distanceToOpponent = player.getDistanceToClosestOpponent(game)
+        val distinctCardValues = player.hand.map { it.value }.distinct()
 
         for (cv in distinctCardValues) {
             if (cv == distanceToOpponent)
-                return game.currentPlayer.hand.filter { it.value == cv }
+                return player.hand.filter { it.value == cv }
         }
 
         return emptyList()
     }
 
     private fun isAdjacentToOpponent(game: Game): Boolean {
-        val playerLocation = game.getPlayerLocation(game.currentPlayer)
-        val opponentLocations = game.getOpponentLocations(game.currentPlayer)
+        val playerLocation = game.getPlayerLocation(player)
+        val opponentLocations = game.getOpponentLocations(player)
 
         return opponentLocations.any { abs(it - playerLocation) == 1 }
     }
 
     private fun getDashAttackIfAble(game: Game): Pair<Card?, List<Card>> {
-        val allCardsButThisTurns = game.currentPlayer.hand.take(game.currentPlayer.hand.size - 1)
-        val distanceToClosestOpponent = game.currentPlayer.getDistanceToClosestOpponent(game)
+        val allCardsButThisTurns = player.hand.take(player.hand.size - 1)
+        val distanceToClosestOpponent = player.getDistanceToClosestOpponent(game)
 
         val lookingForCardValue = distanceToClosestOpponent - _thisTurnsCard.value
-        if (allCardsButThisTurns.any { it.value == lookingForCardValue})
+        if (allCardsButThisTurns.any { it.value == lookingForCardValue })
             return Pair(_thisTurnsCard, allCardsButThisTurns.filter { it.value == lookingForCardValue })
 
         return Pair(null, emptyList()) // Cannot dash attack

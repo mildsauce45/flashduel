@@ -10,6 +10,10 @@ class Player(val name: String, val orientation: Direction, val strategy: PlayerS
         const val INITIAL_HAND_SIZE = 5
     }
 
+    init {
+        strategy.player = this
+    }
+
     private var hitsRemaining = 1
 
     var isRecovering = false
