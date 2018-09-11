@@ -1,6 +1,5 @@
 package gameactions.reactions
 
-import engine.Direction
 import gameactions.MoveAction
 import models.Card
 import models.Game
@@ -16,7 +15,7 @@ class RetreatReaction(val player: Player, private val card: Card): Reaction {
 
     override fun take(game: Game) {
         // A retreat is essentially a move action followed by flagging the player as recovering
-        val moveAction = MoveAction(player, card, Direction.RIGHT) // TODO fix this to work for everyone
+        val moveAction = MoveAction(player, card)
 
         moveAction.takeAction(game)
 

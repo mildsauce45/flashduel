@@ -14,7 +14,7 @@ class MoveActionTests {
     fun test_cards_to_discard() {
         val game = createTestGame()
 
-        val action = MoveAction(game.players[0], Card(3), Direction.LEFT)
+        val action = MoveAction(game.players[0], Card(3))
 
         val discard = action.cardsToDiscard
 
@@ -28,17 +28,17 @@ class MoveActionTests {
 
         // Test pinned left
         game.board.movePlayer(1, -16)
-        var moveAction = MoveAction(game.players[0], Card(1), Direction.LEFT)
+        var moveAction = MoveAction(game.players[0], Card(1))
         assertFalse(moveAction.canTake(game))
-        moveAction = MoveAction(game.players[0], Card(1), Direction.RIGHT)
+        moveAction = MoveAction(game.players[0], Card(1))
         assertFalse(moveAction.canTake(game))
 
         // Test pinned right
         game.board.movePlayer(0, 17)
         game.board.movePlayer(1, 15)
-        moveAction = MoveAction(game.players[0], Card(1), Direction.LEFT)
+        moveAction = MoveAction(game.players[0], Card(1))
         assertFalse(moveAction.canTake(game))
-        moveAction = MoveAction(game.players[0], Card(1), Direction.RIGHT)
+        moveAction = MoveAction(game.players[0], Card(1))
         assertFalse(moveAction.canTake(game))
     }
 
@@ -50,12 +50,11 @@ class MoveActionTests {
         game.board.movePlayer(1, -8)
 
         // Test can't move when they are on the right of you and you try to move right
-        var moveAction = MoveAction(game.players[0], Card(2), Direction.RIGHT)
+        var moveAction = MoveAction(game.players[0], Card(2))
         assertFalse(moveAction.canTake(game))
 
-        game.board.movePlayer(1, -2)
-
-        moveAction = MoveAction(game.players[0], Card(2), Direction.LEFT)
+        // Test that you can't move when they are on the left of you and you try to move left
+        moveAction = MoveAction(game.players[1], Card(2))
         assertFalse(moveAction.canTake(game))
     }
 
@@ -63,7 +62,7 @@ class MoveActionTests {
     fun test_can_move_if_wide_open() {
         val game = createTestGame()
 
-        val moveAction = MoveAction(game.players[0], Card(3), Direction.RIGHT)
+        val moveAction = MoveAction(game.players[0], Card(3))
         assertTrue(moveAction.canTake(game))
     }
 
@@ -75,7 +74,7 @@ class MoveActionTests {
         game.board.movePlayer(0, 7)
         game.board.movePlayer(1, -7)
 
-        var moveAction = MoveAction(game.players.first(), Card(5), Direction.RIGHT)
+        var moveAction = MoveAction(game.players.first(), Card(5))
         assertTrue(moveAction.canTake(game))
 
         moveAction.takeAction(game)
@@ -87,7 +86,7 @@ class MoveActionTests {
         game.board.movePlayer(0, 7)
         game.board.movePlayer(1, -7)
 
-        moveAction = MoveAction(game.players[1], Card(5), Direction.LEFT)
+        moveAction = MoveAction(game.players[1], Card(5))
         assertTrue(moveAction.canTake(game))
 
         moveAction.takeAction(game)

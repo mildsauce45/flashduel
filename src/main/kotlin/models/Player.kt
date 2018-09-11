@@ -2,9 +2,10 @@ package models
 
 import engine.strategies.HumanStrategy
 import engine.strategies.PlayerStrategy
+import engine.Direction
 import java.util.*
 
-class Player(val name: String, val strategy: PlayerStrategy = HumanStrategy()) {
+class Player(val name: String, val orientation: Direction, val strategy: PlayerStrategy = HumanStrategy()) {
     companion object {
         const val INITIAL_HAND_SIZE = 5
     }

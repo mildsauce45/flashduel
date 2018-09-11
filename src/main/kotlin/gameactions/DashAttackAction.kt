@@ -1,8 +1,6 @@
 package gameactions
 
-import engine.Direction
 import engine.getOpponentLocations
-import engine.getOpponents
 import engine.getPlayerLocation
 import models.Card
 import models.Game
@@ -26,22 +24,9 @@ class DashAttackAction(private val player: Player, val dashCard: Card, val attac
     }
 
     override fun takeAction(game: Game) {
-        val playerLocation = game.getPlayerLocation(player)
-        val opponentDistance = getDistanceToClosestOpponent(game)
-        val opponents = game.getOpponents(player)
-
-        val targetedOpponent = opponents.first {
-            abs(game.getPlayerLocation(it) - playerLocation) == opponentDistance
-        }
-
-        val direction = when {
-            game.getPlayerLocation(targetedOpponent) - playerLocation > 0 -> Direction.RIGHT
-            else -> Direction.LEFT
-        }
-
         // The move action handles everything, including stopping at the opponent if you choose a dash card
         // greater than the space between you and the opponent
-        val moveAction = MoveAction(player, dashCard, direction)
+        val moveAction = MoveAction(player, dashCard)
         moveAction.takeAction(game)
 
         // The attack action handles the second part of the dash attack

@@ -10,3 +10,10 @@ fun Direction.getMultiplier(): Int {
         else -> 1
     }
 }
+
+fun Direction.opposite(): Direction {
+    return when (this) {
+        Direction.LEFT -> Direction.RIGHT
+        else -> Direction.LEFT
+    }
+}

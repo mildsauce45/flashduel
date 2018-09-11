@@ -5,7 +5,7 @@ import models.Card
 import models.Game
 import models.Player
 
-class MoveAction(private val player: Player, private val card: Card, private val direction: Direction) : GameAction {
+class MoveAction(private val player: Player, private val card: Card) : GameAction {
     override val cardsToDiscard: List<Card>
         get() = listOf(card)
 
@@ -32,20 +32,20 @@ class MoveAction(private val player: Player, private val card: Card, private val
         val opponentLocations = game.getOpponentLocations(player)
 
         // In a game with multiple opponents, we can only move as far as the closest
-        val nearestOpponent = when (direction) {
+        val nearestOpponent = when (player.orientation) {
             Direction.LEFT -> opponentLocations.filter { it < playerLocation }.max()
             else -> opponentLocations.filter { it > playerLocation }.min()
         } ?: throw IllegalStateException("There should always be a living opponent here, or the game would be over")
 
-        val dirMultiplier = direction.getMultiplier()
+        val dirMultiplier = player.orientation.getMultiplier()
 
         var moveAmount = card.value * dirMultiplier
         val newLocation = playerLocation + moveAmount
 
         // If we would move past the player (or ont top of him) we need to calculate how much we need to adjust our movement
         moveAmount = when {
-            newLocation >= nearestOpponent && direction == Direction.RIGHT -> nearestOpponent - playerLocation - 1
-            newLocation <= nearestOpponent && direction == Direction.LEFT -> (playerLocation - nearestOpponent - 1) * -1
+            newLocation >= nearestOpponent && player.orientation == Direction.RIGHT -> nearestOpponent - playerLocation - 1
+            newLocation <= nearestOpponent && player.orientation == Direction.LEFT -> (playerLocation - nearestOpponent - 1) * -1
             else -> moveAmount
         }
 
@@ -66,7 +66,7 @@ class MoveAction(private val player: Player, private val card: Card, private val
         val playerLocation = game.board.playerPositions[playerIndex]
         val opponentLocations = opponentIndices.map { game.board.playerPositions[it] }
 
-        return when (direction) {
+        return when (game.players[playerIndex].orientation) {
             Direction.RIGHT -> opponentLocations.any { playerLocation + 1 == it }
             else -> opponentLocations.any { playerLocation - 1 == it }
         }

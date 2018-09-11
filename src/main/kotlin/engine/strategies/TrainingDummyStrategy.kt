@@ -40,7 +40,7 @@ class TrainingDummyStrategy: PlayerStrategy {
         if (dashCard != null && dashAttackCards.isNotEmpty())
             return DashAttackAction(game.currentPlayer, dashCard, dashAttackCards)
 
-        return MoveAction(game.currentPlayer, _thisTurnsCard, Direction.LEFT)
+        return MoveAction(game.currentPlayer, _thisTurnsCard)
     }
 
     override fun getReaction(action: GameAction, game: Game): Reaction? {

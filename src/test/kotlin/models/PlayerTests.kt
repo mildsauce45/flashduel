@@ -1,5 +1,6 @@
 package models
 
+import engine.Direction
 import org.junit.Test
 
 class PlayerTests {
@@ -23,6 +24,6 @@ class PlayerTests {
     }
 
     private fun testPlayer(): Player {
-        return Player("Test Player")
+        return Player("Test Player", Direction.RIGHT)
     }
 }
