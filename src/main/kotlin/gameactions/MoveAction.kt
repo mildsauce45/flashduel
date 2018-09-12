@@ -5,7 +5,7 @@ import models.Card
 import models.Game
 import models.Player
 
-class MoveAction(private val player: Player, private val card: Card) : GameAction {
+class MoveAction(private val player: Player, private val card: Card, private val isRetreat: Boolean = false) : GameAction {
     override val cardsToDiscard: List<Card>
         get() = listOf(card)
 
@@ -37,7 +37,10 @@ class MoveAction(private val player: Player, private val card: Card) : GameActio
             else -> opponentLocations.filter { it > playerLocation }.min()
         } ?: throw IllegalStateException("There should always be a living opponent here, or the game would be over")
 
-        val dirMultiplier = player.orientation.getMultiplier()
+        val dirMultiplier = when (isRetreat) {
+            true -> player.orientation.opposite()
+            else -> player.orientation
+        }.getMultiplier()
 
         var moveAmount = card.value * dirMultiplier
         val newLocation = playerLocation + moveAmount

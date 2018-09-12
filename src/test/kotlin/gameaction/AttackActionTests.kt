@@ -5,6 +5,7 @@ import gameactions.AttackAction
 import models.Card
 import models.Game
 import org.junit.Assert.*
+import org.junit.Ignore
 import org.junit.Test
 
 class AttackActionTests {
@@ -51,6 +52,7 @@ class AttackActionTests {
     }
 
     @Test
+    @Ignore("Possibly deprecated. Will need to be tested once a full engine class is underway.")
     fun test_unblocked_attack_kills() {
         val game = setupGame()
 

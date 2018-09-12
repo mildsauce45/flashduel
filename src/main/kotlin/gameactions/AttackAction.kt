@@ -24,14 +24,14 @@ class AttackAction(private val player: Player, val cards: List<Card>): GameActio
     }
 
     override fun takeAction(game: Game) {
-        val playerLocation = game.getPlayerLocation(player)
-
-        val opponents = game.getOpponents(player)
-
-        val attackedOpponent = opponents.first {
-            abs(game.getPlayerLocation(it) - playerLocation) == cards.first().value
-        }
-
-        attackedOpponent.takeHit()
+//        val playerLocation = game.getPlayerLocation(player)
+//
+//        val opponents = game.getOpponents(player)
+//
+//        val attackedOpponent = opponents.first {
+//            abs(game.getPlayerLocation(it) - playerLocation) == cards.first().value
+//        }
+//
+//        attackedOpponent.takeHit()
     }
 }

@@ -1,11 +1,14 @@
 package engine.strategies
 
+import engine.Direction
 import engine.getDistanceToClosestOpponent
 import engine.getOpponentLocations
 import engine.getPlayerLocation
 import gameactions.*
+import gameactions.reactions.BlockReaction
 import gameactions.reactions.Reaction
 import gameactions.reactions.RetreatReaction
+import gameactions.reactions.TakeHitReaction
 import models.Card
 import models.Game
 import models.Player
@@ -56,10 +59,14 @@ class TrainingDummyStrategy : PlayerStrategy {
                 else -> emptyList()
             }
 
-            // Can we block?
+            val block = BlockReaction(player, attackCards)
+            val retreat = RetreatReaction(player, extraCard)
 
-            // Retreat
-            return RetreatReaction(player, extraCard)
+            return when {
+                block.canTake(game) -> block
+                retreat.canTake(game) -> retreat
+                else -> TakeHitReaction(player)
+            }
         }
 
         return null

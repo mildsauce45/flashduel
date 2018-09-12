@@ -11,7 +11,7 @@ class BlockReaction(val player: Player, private val attackCards: List<Card>): Re
     override fun canTake(game: Game): Boolean {
         val attackValue = attackCards[0].value
 
-        return player.hand.count { it.value == attackValue } > attackCards.size
+        return player.hand.count { it.value == attackValue } >= attackCards.size
     }
 
     override fun take(game: Game) {
