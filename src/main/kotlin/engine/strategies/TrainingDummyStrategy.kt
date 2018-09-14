@@ -2,10 +2,7 @@ package engine.strategies
 
 import engine.getDistanceToClosestOpponent
 import gameactions.*
-import gameactions.reactions.BlockReaction
-import gameactions.reactions.Reaction
-import gameactions.reactions.RetreatReaction
-import gameactions.reactions.TakeHitReaction
+import gameactions.reactions.*
 import models.Card
 import models.Game
 import models.Player
@@ -33,12 +30,12 @@ class TrainingDummyStrategy : PlayerStrategy {
     override fun getNextAction(game: Game): GameAction {
         val attack = getAttackAction(game)
         val push = getPushAction()
-        val (dashCard, dashAttackCards) = getDashAttackIfAble(game)
+        val dashAttack = getDashAttackIfAble(game)
 
         return when {
             attack.canTake(game) -> attack
-            push.canTake(game) -> PushAction(player, _thisTurnsCard)
-            dashCard != null && dashAttackCards.isNotEmpty() -> DashAttackAction(player, dashCard, dashAttackCards)
+            push.canTake(game) -> push
+            dashAttack != null && dashAttack.canTake(game) -> dashAttack
             else -> MoveAction(player, _thisTurnsCard)
         }
     }
@@ -74,14 +71,14 @@ class TrainingDummyStrategy : PlayerStrategy {
         return PushAction(player, _thisTurnsCard)
     }
 
-    private fun getDashAttackIfAble(game: Game): Pair<Card?, List<Card>> {
+    private fun getDashAttackIfAble(game: Game): DashAttackAction? {
         val allCardsButThisTurns = player.hand.take(player.hand.size - 1)
         val distanceToClosestOpponent = player.getDistanceToClosestOpponent(game)
 
         val lookingForCardValue = distanceToClosestOpponent - _thisTurnsCard.value
         if (allCardsButThisTurns.any { it.value == lookingForCardValue })
-            return Pair(_thisTurnsCard, allCardsButThisTurns.filter { it.value == lookingForCardValue })
+            return DashAttackAction(player, _thisTurnsCard, allCardsButThisTurns.filter { it.value == lookingForCardValue })
 
-        return Pair(null, emptyList()) // Cannot dash attack
+        return null // Cannot dash attack
     }
 }
