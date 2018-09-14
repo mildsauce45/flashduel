@@ -20,5 +20,6 @@ class GamePlayerTests {
         gamePlayer.play()
 
         assertTrue(game.isGameOver)
+        assertTrue(game.deck.remaining > 0 || game.isDraw)
     }
 }

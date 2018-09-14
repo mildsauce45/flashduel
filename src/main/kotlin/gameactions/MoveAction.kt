@@ -52,6 +52,9 @@ class MoveAction(override val player: Player, private val card: Card, private va
         // Make the move
         game.board.movePlayer(game.getPlayerIndex(player), moveAmount)
 
+        // Discard the move card
+        player.discard(cardsToDiscard, game)
+
         // No target
         return null
     }

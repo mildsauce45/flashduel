@@ -1,9 +1,6 @@
 package gameactions
 
-import engine.getOpponentLocations
-import engine.getOpponents
-import engine.getPlayerIndex
-import engine.getPlayerLocation
+import engine.*
 import models.Card
 import models.Game
 import models.Player
@@ -34,6 +31,9 @@ class PushAction(override val player: Player, private val card: Card): GameActio
         }
 
         game.board.movePlayer(game.getPlayerIndex(targetedOpponent), card.value * movementMultiplier)
+
+        // Discard the card used to push
+        player.discard(cardsToDiscard, game)
 
         // No response required here
         return null

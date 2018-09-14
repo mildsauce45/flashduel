@@ -1,5 +1,6 @@
 package gameactions.reactions
 
+import engine.discard
 import models.Card
 import models.Game
 import models.Player
@@ -15,6 +16,6 @@ class BlockReaction(override val player: Player, private val attackCards: List<C
     }
 
     override fun take(game: Game) {
-        // There's to do at this point
+        player.discard(cardsToDiscard, game)
     }
 }

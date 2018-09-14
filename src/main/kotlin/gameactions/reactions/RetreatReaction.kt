@@ -1,6 +1,7 @@
 package gameactions.reactions
 
 import engine.Direction
+import engine.discard
 import engine.getPlayerLocation
 import gameactions.MoveAction
 import models.Card
@@ -23,5 +24,6 @@ class RetreatReaction(override val player: Player, private val card: Card) : Rea
         MoveAction(player, card, true).takeAction(game)
 
         player.isRecovering = true
+        player.discard(cardsToDiscard, game)
     }
 }

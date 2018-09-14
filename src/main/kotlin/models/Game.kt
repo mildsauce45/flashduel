@@ -7,6 +7,7 @@ class Game(val players: List<Player>, val deck: Deck = Deck(), val board: Board 
     private var _gameState: GameState = GameState.START_GAME
 
     val discardPile = Vector<Card>()
+    var isDraw = false
 
     val currentPlayer: Player
         get() = players[_currentPlayerIndex]
@@ -15,7 +16,7 @@ class Game(val players: List<Player>, val deck: Deck = Deck(), val board: Board 
         get() = _gameState
 
     val isGameOver
-        get() = players.any { !it.isAlive }
+        get() = players.any { !it.isAlive } || isDraw
 
     val isTimeOver
         get() = deck.remaining == 0

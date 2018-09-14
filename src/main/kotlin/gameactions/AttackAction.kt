@@ -1,5 +1,6 @@
 package gameactions
 
+import engine.discard
 import engine.getOpponentLocations
 import engine.getOpponents
 import engine.getPlayerLocation
@@ -28,6 +29,9 @@ class AttackAction(override val player: Player, val cards: List<Card>): GameActi
         val playerLocation = game.getPlayerLocation(player)
         val opponents = game.getOpponents(player)
         val attackValue = cards[0].value
+
+        // Discard the cards used in the attack
+        player.discard(cardsToDiscard, game)
 
         // Let this throw if the list is actually empty because we shouldn't have gotten here any other way
         return opponents.first{ abs(game.getPlayerLocation(it) - playerLocation) == attackValue }

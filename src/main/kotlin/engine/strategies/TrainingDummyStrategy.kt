@@ -1,8 +1,6 @@
 package engine.strategies
 
 import engine.getDistanceToClosestOpponent
-import engine.getOpponentLocations
-import engine.getPlayerLocation
 import gameactions.*
 import gameactions.reactions.BlockReaction
 import gameactions.reactions.Reaction
@@ -11,7 +9,6 @@ import gameactions.reactions.TakeHitReaction
 import models.Card
 import models.Game
 import models.Player
-import kotlin.math.abs
 
 // ** Bots turn (GameActions) **
 // 1) Attacks if it can, always powering up with pairs, triples, etc
@@ -46,7 +43,7 @@ class TrainingDummyStrategy : PlayerStrategy {
         }
     }
 
-    override fun getReaction(action: GameAction, game: Game): Reaction? {
+    override fun getReaction(action: GameAction, game: Game): Reaction {
         val extraCard = game.deck.draw()
 
         player.draw(extraCard)

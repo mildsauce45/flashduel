@@ -19,7 +19,7 @@ class HumanStrategy: PlayerStrategy {
         throw NotImplementedError()
     }
 
-    override fun getReaction(action: GameAction, game: Game): Reaction? {
+    override fun getReaction(action: GameAction, game: Game): Reaction {
         throw NotImplementedError()
     }
 }

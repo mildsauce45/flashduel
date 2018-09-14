@@ -44,9 +44,7 @@ fun Player.discard(cards: List<Card>, game: Game) {
     }
 }
 
-fun Player.drawToFive(game: Game): Boolean {
+fun Player.drawToFive(game: Game) {
     while (this.hand.size < 5 && game.deck.remaining > 0)
         this.draw(game.deck.draw())
-
-    return game.deck.remaining > 0
 }
