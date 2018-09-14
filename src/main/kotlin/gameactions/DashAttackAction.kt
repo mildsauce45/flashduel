@@ -12,6 +12,9 @@ class DashAttackAction(override val player: Player, val dashCard: Card, val atta
         get() = attackCards.plusElement(dashCard)
 
     override fun canTake(game: Game): Boolean {
+        if (attackCards.isEmpty())
+            return false
+
         val attackValue = attackCards.first().value
 
         if (attackValue == 1)

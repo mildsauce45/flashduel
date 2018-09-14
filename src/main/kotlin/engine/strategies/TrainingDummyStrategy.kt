@@ -35,7 +35,7 @@ class TrainingDummyStrategy : PlayerStrategy {
         return when {
             attack.canTake(game) -> attack
             push.canTake(game) -> push
-            dashAttack != null && dashAttack.canTake(game) -> dashAttack
+            dashAttack.canTake(game) -> dashAttack
             else -> MoveAction(player, _thisTurnsCard)
         }
     }
@@ -71,14 +71,12 @@ class TrainingDummyStrategy : PlayerStrategy {
         return PushAction(player, _thisTurnsCard)
     }
 
-    private fun getDashAttackIfAble(game: Game): DashAttackAction? {
+    private fun getDashAttackIfAble(game: Game): DashAttackAction {
         val allCardsButThisTurns = player.hand.take(player.hand.size - 1)
         val distanceToClosestOpponent = player.getDistanceToClosestOpponent(game)
 
         val lookingForCardValue = distanceToClosestOpponent - _thisTurnsCard.value
-        if (allCardsButThisTurns.any { it.value == lookingForCardValue })
-            return DashAttackAction(player, _thisTurnsCard, allCardsButThisTurns.filter { it.value == lookingForCardValue })
 
-        return null // Cannot dash attack
+        return DashAttackAction(player, _thisTurnsCard, allCardsButThisTurns.filter { it.value == lookingForCardValue })
     }
 }
