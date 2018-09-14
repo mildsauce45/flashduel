@@ -1,6 +1,5 @@
 package engine.strategies
 
-import engine.Direction
 import engine.getDistanceToClosestOpponent
 import engine.getOpponentLocations
 import engine.getPlayerLocation
@@ -14,12 +13,12 @@ import models.Game
 import models.Player
 import kotlin.math.abs
 
-// ** Bots turn **
+// ** Bots turn (GameActions) **
 // 1) Attacks if it can, always powering up with pairs, triples, etc
 // 2) If adjacent to enemy, he pushes with the card it drew for the turn
 // 3) If it can dash attack, using the card it drew for the turn as the dash, it does (powering up as much as possible)
 // 4) Moves forward with the card it drew this turn
-// ** Your turn **
+// ** Your turn (Reactions) **
 // 1) When attacked or dash attacked, draws an extra card, then blocks, if possible
 // 2) If it cannot block it retreats with the extra card it just drew
 class TrainingDummyStrategy : PlayerStrategy {
@@ -33,18 +32,16 @@ class TrainingDummyStrategy : PlayerStrategy {
     }
 
     override fun getNextAction(game: Game): GameAction {
-        val cardsToAttackWith = getAttackCardsIfAble(game)
-        if (cardsToAttackWith.isNotEmpty())
-            return AttackAction(game.currentPlayer, cardsToAttackWith)
-
-        if (isAdjacentToOpponent(game))
-            return PushAction(game.currentPlayer, _thisTurnsCard)
-
+        val attack = getAttackAction(game)
+        val push = getPushAction()
         val (dashCard, dashAttackCards) = getDashAttackIfAble(game)
-        if (dashCard != null && dashAttackCards.isNotEmpty())
-            return DashAttackAction(game.currentPlayer, dashCard, dashAttackCards)
 
-        return MoveAction(game.currentPlayer, _thisTurnsCard)
+        return when {
+            attack.canTake(game) -> attack
+            push.canTake(game) -> PushAction(player, _thisTurnsCard)
+            dashCard != null && dashAttackCards.isNotEmpty() -> DashAttackAction(player, dashCard, dashAttackCards)
+            else -> MoveAction(player, _thisTurnsCard)
+        }
     }
 
     override fun getReaction(action: GameAction, game: Game): Reaction? {
@@ -72,23 +69,14 @@ class TrainingDummyStrategy : PlayerStrategy {
         return null
     }
 
-    private fun getAttackCardsIfAble(game: Game): List<Card> {
+    private fun getAttackAction(game: Game): AttackAction {
         val distanceToOpponent = player.getDistanceToClosestOpponent(game)
-        val distinctCardValues = player.hand.map { it.value }.distinct()
 
-        for (cv in distinctCardValues) {
-            if (cv == distanceToOpponent)
-                return player.hand.filter { it.value == cv }
-        }
-
-        return emptyList()
+        return AttackAction(player, player.hand.filter { it!!.value == distanceToOpponent })
     }
 
-    private fun isAdjacentToOpponent(game: Game): Boolean {
-        val playerLocation = game.getPlayerLocation(player)
-        val opponentLocations = game.getOpponentLocations(player)
-
-        return opponentLocations.any { abs(it - playerLocation) == 1 }
+    private fun getPushAction(): PushAction {
+        return PushAction(player, _thisTurnsCard)
     }
 
     private fun getDashAttackIfAble(game: Game): Pair<Card?, List<Card>> {

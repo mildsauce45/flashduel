@@ -3,6 +3,7 @@ package engine.strategies
 import createPlayersFromStrategies
 import createTestGame
 import gameactions.*
+import gameactions.reactions.*
 import models.*
 import org.junit.Assert.*
 import org.junit.Test
@@ -106,6 +107,65 @@ class TrainingDummyStrategyTests {
         when (action) {
             is MoveAction -> assertEquals(topCard, action.cardsToDiscard[0])
             else -> fail("Should be a move action here")
+        }
+    }
+
+    @Test
+    fun test_blocks_if_able() {
+        val game = setupTrainingDummyGame(listOf(2, 2, 3, 3, 4, 4, 5, 5, 2, 3, 1, 1))
+
+        val attackWithOneCard = AttackAction(game.players[0], listOf(Card(4)))
+        var reaction = game.currentPlayer.strategy.getReaction(attackWithOneCard, game)
+
+        when (reaction) {
+            is BlockReaction -> assertEquals(reaction.cardsToDiscard.size, 1)
+            else -> fail("Should be able to block the attack")
+        }
+
+        val attackWithMultipleCards = AttackAction(game.players[0], listOf(Card(3), Card(3)))
+        reaction = game.currentPlayer.strategy.getReaction(attackWithMultipleCards, game)
+
+        when (reaction) {
+            is BlockReaction -> assertEquals(reaction.cardsToDiscard.size, 2)
+            else -> fail("Should be able to block the multi-card attack")
+        }
+    }
+
+    @Test
+    fun test_retreats_if_cannot_block() {
+        val game = setupTrainingDummyGame(listOf(2, 2, 3, 3, 4, 5, 5, 5, 2, 3, 1, 1))
+        val topCard = game.deck.peek()
+
+        // Move in because you cannot retreat from the far right or left edges
+        game.board.movePlayer(1, -2)
+
+        val attackWithOneCard = AttackAction(game.players[0], listOf(Card(4)))
+        var reaction = game.currentPlayer.strategy.getReaction(attackWithOneCard, game)
+
+        when (reaction) {
+            is RetreatReaction -> assertEquals(reaction.cardsToDiscard[0], topCard)
+            else -> fail("Should retreat because we don't have a 4")
+        }
+
+        val attackWithMultipleCards = AttackAction(game.players[0], listOf(Card(2), Card(2)))
+        reaction = game.currentPlayer.strategy.getReaction(attackWithMultipleCards, game)
+
+        when (reaction) {
+            is RetreatReaction -> assertEquals(reaction.cardsToDiscard[0], topCard)
+            else -> fail("Should retreat because we don't have two 2s")
+        }
+    }
+
+    @Test
+    fun test_takes_hit_if_cannot_block_or_retreat() {
+        val game = setupTrainingDummyGame(listOf(2, 2, 3, 3, 4, 5, 5, 5, 2, 3, 1, 1))
+
+        val attackWithOneCard = AttackAction(game.players[0], listOf(Card(4)))
+        val reaction = game.currentPlayer.strategy.getReaction(attackWithOneCard, game)
+
+        when (reaction) {
+            is TakeHitReaction -> assertTrue(true)
+            else -> fail("We don't have a 4 and we're at the edge, we should lose")
         }
     }
 
