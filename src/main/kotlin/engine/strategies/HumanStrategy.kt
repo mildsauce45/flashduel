@@ -12,6 +12,7 @@ class HumanStrategy: PlayerStrategy {
     override fun startTurn(game: Game) {
         // Humans currently don't get to do anything fun on the start of their turn
         // When abilities are added, they'll get refreshed here
+        player.isRecovering = false
     }
 
     override fun getNextAction(game: Game): GameAction {
@@ -19,9 +20,6 @@ class HumanStrategy: PlayerStrategy {
     }
 
     override fun getReaction(action: GameAction, game: Game): Reaction? {
-        if (!action.requiresReaction)
-            return null
-
         throw NotImplementedError()
     }
 }

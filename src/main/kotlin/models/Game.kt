@@ -6,6 +6,8 @@ class Game(val players: List<Player>, val deck: Deck = Deck(), val board: Board 
     private var _currentPlayerIndex = -1
     private var _gameState: GameState = GameState.START_GAME
 
+    val discardPile = Vector<Card>()
+
     val currentPlayer: Player
         get() = players[_currentPlayerIndex]
 
@@ -14,6 +16,9 @@ class Game(val players: List<Player>, val deck: Deck = Deck(), val board: Board 
 
     val isGameOver
         get() = players.any { !it.isAlive }
+
+    val isTimeOver
+        get() = deck.remaining == 0
 
     fun switchPlayer() {
         _currentPlayerIndex = (_currentPlayerIndex + 1) % players.size

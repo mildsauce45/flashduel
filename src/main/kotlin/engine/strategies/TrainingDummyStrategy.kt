@@ -26,6 +26,8 @@ class TrainingDummyStrategy : PlayerStrategy {
     override lateinit var player: Player
 
     override fun startTurn(game: Game) {
+        player.isRecovering = false
+
         _thisTurnsCard = game.deck.draw()
 
         player.draw(_thisTurnsCard)
@@ -45,28 +47,24 @@ class TrainingDummyStrategy : PlayerStrategy {
     }
 
     override fun getReaction(action: GameAction, game: Game): Reaction? {
-        if (action.requiresReaction) {
-            val extraCard = game.deck.draw()
+        val extraCard = game.deck.draw()
 
-            player.draw(extraCard)
+        player.draw(extraCard)
 
-            val attackCards = when (action) {
-                is AttackAction -> action.cards
-                is DashAttackAction -> action.attackCards
-                else -> emptyList()
-            }
-
-            val block = BlockReaction(player, attackCards)
-            val retreat = RetreatReaction(player, extraCard)
-
-            return when {
-                block.canTake(game) -> block
-                retreat.canTake(game) -> retreat
-                else -> TakeHitReaction(player)
-            }
+        val attackCards = when (action) {
+            is AttackAction -> action.cards
+            is DashAttackAction -> action.attackCards
+            else -> emptyList()
         }
 
-        return null
+        val block = BlockReaction(player, attackCards)
+        val retreat = RetreatReaction(player, extraCard)
+
+        return when {
+            block.canTake(game) -> block
+            retreat.canTake(game) -> retreat
+            else -> TakeHitReaction(player)
+        }
     }
 
     private fun getAttackAction(game: Game): AttackAction {

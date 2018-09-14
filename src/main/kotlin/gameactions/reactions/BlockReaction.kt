@@ -4,7 +4,7 @@ import models.Card
 import models.Game
 import models.Player
 
-class BlockReaction(val player: Player, private val attackCards: List<Card>): Reaction {
+class BlockReaction(override val player: Player, private val attackCards: List<Card>): Reaction {
     override val cardsToDiscard: List<Card>
         get() = player.hand.filter { it.value == attackCards[0].value }.take(attackCards.size)
 

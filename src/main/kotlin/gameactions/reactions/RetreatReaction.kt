@@ -7,7 +7,7 @@ import models.Card
 import models.Game
 import models.Player
 
-class RetreatReaction(val player: Player, private val card: Card) : Reaction {
+class RetreatReaction(override val player: Player, private val card: Card) : Reaction {
     override val cardsToDiscard: List<Card>
         get() = listOf(card)
 

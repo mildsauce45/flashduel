@@ -4,7 +4,7 @@ import models.Card
 import models.Game
 import models.Player
 
-class TakeHitReaction(val player: Player): Reaction {
+class TakeHitReaction(override val player: Player): Reaction {
     override val cardsToDiscard: List<Card>
         get() = emptyList()
 

@@ -1,5 +1,6 @@
 package engine
 
+import models.Card
 import models.Game
 import models.Player
 import kotlin.math.abs
@@ -34,4 +35,18 @@ fun Player.getDistanceToClosestOpponent(game: Game): Int {
     val opponentLocations = game.getOpponentLocations(this)
 
     return opponentLocations.map { abs(playerLocation - it) }.min()!!
+}
+
+fun Player.discard(cards: List<Card>, game: Game) {
+    for (c in cards) {
+        this.hand.remove(c)
+        game.discardPile.add(c)
+    }
+}
+
+fun Player.drawToFive(game: Game): Boolean {
+    while (this.hand.size < 5 && game.deck.remaining > 0)
+        this.draw(game.deck.draw())
+
+    return game.deck.remaining > 0
 }

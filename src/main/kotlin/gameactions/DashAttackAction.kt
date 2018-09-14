@@ -7,12 +7,9 @@ import models.Game
 import models.Player
 import kotlin.math.abs
 
-class DashAttackAction(private val player: Player, val dashCard: Card, val attackCards: List<Card>) : GameAction {
+class DashAttackAction(override val player: Player, val dashCard: Card, val attackCards: List<Card>) : GameAction {
     override val cardsToDiscard: List<Card>
         get() = attackCards.plusElement(dashCard)
-
-    override val requiresReaction: Boolean
-        get() = true
 
     override fun canTake(game: Game): Boolean {
         val attackValue = attackCards.first().value
@@ -23,7 +20,7 @@ class DashAttackAction(private val player: Player, val dashCard: Card, val attac
         return dashCard.value + attackValue == getDistanceToClosestOpponent(game)
     }
 
-    override fun takeAction(game: Game) {
+    override fun takeAction(game: Game): Player? {
         // The move action handles everything, including stopping at the opponent if you choose a dash card
         // greater than the space between you and the opponent
         val moveAction = MoveAction(player, dashCard)
@@ -31,7 +28,7 @@ class DashAttackAction(private val player: Player, val dashCard: Card, val attac
 
         // The attack action handles the second part of the dash attack
         val attackAction = AttackAction(player, attackCards)
-        attackAction.takeAction(game)
+        return attackAction.takeAction(game)
     }
 
     private fun canDashNextTo(game: Game): Boolean {

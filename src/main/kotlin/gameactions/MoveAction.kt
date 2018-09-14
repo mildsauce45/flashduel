@@ -5,12 +5,9 @@ import models.Card
 import models.Game
 import models.Player
 
-class MoveAction(private val player: Player, private val card: Card, private val isRetreat: Boolean = false) : GameAction {
+class MoveAction(override val player: Player, private val card: Card, private val isRetreat: Boolean = false) : GameAction {
     override val cardsToDiscard: List<Card>
         get() = listOf(card)
-
-    override val requiresReaction: Boolean
-        get() = false
 
     override fun canTake(game: Game): Boolean {
         val opponentIndices = game.getOpponentIndices(player)
@@ -27,7 +24,7 @@ class MoveAction(private val player: Player, private val card: Card, private val
         return true
     }
 
-    override fun takeAction(game: Game) {
+    override fun takeAction(game: Game): Player? {
         val playerLocation = game.getPlayerLocation(player)
         val opponentLocations = game.getOpponentLocations(player)
 
@@ -54,6 +51,9 @@ class MoveAction(private val player: Player, private val card: Card, private val
 
         // Make the move
         game.board.movePlayer(game.getPlayerIndex(player), moveAmount)
+
+        // No target
+        return null
     }
 
     private fun pinnedLeft(game: Game, playerIndex: Int, opponentIndices: List<Int>): Boolean {

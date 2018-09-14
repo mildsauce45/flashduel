@@ -8,12 +8,9 @@ import models.Game
 import models.Player
 import kotlin.math.abs
 
-class AttackAction(private val player: Player, val cards: List<Card>): GameAction {
+class AttackAction(override val player: Player, val cards: List<Card>): GameAction {
     override val cardsToDiscard: List<Card>
         get() = cards
-
-    override val requiresReaction: Boolean
-        get() = true
 
     override fun canTake(game: Game): Boolean {
         if (cards.isEmpty())
@@ -26,7 +23,13 @@ class AttackAction(private val player: Player, val cards: List<Card>): GameActio
         return distances.any { it == cards.first().value }
     }
 
-    override fun takeAction(game: Game) {
-        // TODO: Anything to do here?
+    override fun takeAction(game: Game): Player? {
+        // For now just take the first player at that spot
+        val playerLocation = game.getPlayerLocation(player)
+        val opponents = game.getOpponents(player)
+        val attackValue = cards[0].value
+
+        // Let this throw if the list is actually empty because we shouldn't have gotten here any other way
+        return opponents.first{ abs(game.getPlayerLocation(it) - playerLocation) == attackValue }
     }
 }

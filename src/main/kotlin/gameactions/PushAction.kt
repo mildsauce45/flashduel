@@ -9,12 +9,9 @@ import models.Game
 import models.Player
 import kotlin.math.abs
 
-class PushAction(private val player: Player, private val card: Card): GameAction {
+class PushAction(override val player: Player, private val card: Card): GameAction {
     override val cardsToDiscard: List<Card>
         get() = listOf(card)
-
-    override val requiresReaction: Boolean
-        get() = false
 
     override fun canTake(game: Game): Boolean {
         val playerLocation = game.getPlayerLocation(player)
@@ -24,7 +21,7 @@ class PushAction(private val player: Player, private val card: Card): GameAction
         return distances.any { it == 1 }
     }
 
-    override fun takeAction(game: Game) {
+    override fun takeAction(game: Game): Player? {
         val playerLocation = game.getPlayerLocation(player)
 
         val targetedOpponent = game.getOpponents(player).first {
@@ -37,5 +34,8 @@ class PushAction(private val player: Player, private val card: Card): GameAction
         }
 
         game.board.movePlayer(game.getPlayerIndex(targetedOpponent), card.value * movementMultiplier)
+
+        // No response required here
+        return null
     }
 }
