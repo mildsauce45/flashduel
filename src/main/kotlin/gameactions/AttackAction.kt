@@ -9,8 +9,11 @@ import models.Game
 import models.Player
 import kotlin.math.abs
 
-class AttackAction(override val player: Player, val cards: List<Card>): GameAction {
+class AttackAction(override val player: Player, val cards: List<Card>): GameAction, RequiresReaction {
     override val cardsToDiscard: List<Card>
+        get() = cards
+
+    override val attackCards: List<Card>
         get() = cards
 
     override fun canTake(game: Game): Boolean {

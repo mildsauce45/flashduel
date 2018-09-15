@@ -1,5 +1,6 @@
 package engine
 
+import gameactions.RequiresReaction
 import gameactions.reactions.TakeHitReaction
 import models.Game
 import kotlin.math.abs
@@ -25,7 +26,7 @@ class GamePlayer(private val game: Game) {
                 val target = action.takeAction(game)
 
                 // If the action requires a response from an opponent
-                if (target != null) {
+                if (target != null && action is RequiresReaction) {
                     val reaction = target.strategy.getReaction(action, game)
 
                     // Some strategies require cards to be drawn while getting a reaction, so check for TimeOver

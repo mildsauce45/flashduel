@@ -40,18 +40,12 @@ class TrainingDummyStrategy : PlayerStrategy {
         }
     }
 
-    override fun getReaction(action: GameAction, game: Game): Reaction {
+    override fun getReaction(action: RequiresReaction, game: Game): Reaction {
         val extraCard = game.deck.draw()
 
         player.draw(extraCard)
 
-        val attackCards = when (action) {
-            is AttackAction -> action.cards
-            is DashAttackAction -> action.attackCards
-            else -> emptyList()
-        }
-
-        val block = BlockReaction(player, attackCards)
+        val block = BlockReaction(player, action.attackCards)
         val retreat = RetreatReaction(player, extraCard)
 
         return when {

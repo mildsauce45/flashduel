@@ -1,6 +1,7 @@
 package engine.strategies
 
 import gameactions.GameAction
+import gameactions.RequiresReaction
 import gameactions.reactions.Reaction
 import models.Game
 import models.Player
@@ -10,5 +11,5 @@ interface PlayerStrategy {
 
     fun startTurn(game: Game)
     fun getNextAction(game: Game): GameAction
-    fun getReaction(action: GameAction, game: Game): Reaction
+    fun getReaction(action: RequiresReaction, game: Game): Reaction
 }
