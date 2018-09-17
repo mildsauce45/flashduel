@@ -10,6 +10,9 @@ class PushAction(override val player: Player, private val card: Card): GameActio
     override val cardsToDiscard: List<Card>
         get() = listOf(card)
 
+    override val asMessage: String
+        get() = "${player.name} pushes ${card.value} spaces"
+
     override fun canTake(game: Game): Boolean {
         val playerLocation = game.getPlayerLocation(player)
         val opponentLocations = game.getOpponentLocations(player)

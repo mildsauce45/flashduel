@@ -9,6 +9,9 @@ class MoveAction(override val player: Player, private val card: Card, private va
     override val cardsToDiscard: List<Card>
         get() = listOf(card)
 
+    override val asMessage: String
+        get() = "${player.name} ${(if (isRetreat) "retreats" else "moves")} ${card.value} spaces"
+
     override fun canTake(game: Game): Boolean {
         val opponentIndices = game.getOpponentIndices(player)
         val playerIndex = game.getPlayerIndex(player)

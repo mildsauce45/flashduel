@@ -3,9 +3,11 @@ package engine
 import createPlayersFromStrategies
 import createTestGame
 import engine.strategies.TrainingDummyStrategy
+import models.Game
 import org.junit.Assert.*
 import org.junit.Ignore
 import org.junit.Test
+import views.GameView
 
 class GamePlayerTests {
     @Test
@@ -15,11 +17,23 @@ class GamePlayerTests {
             createPlayersFromStrategies(listOf(TrainingDummyStrategy(), TrainingDummyStrategy()))
         }
 
-        val gamePlayer = GamePlayer(game)
+        val gamePlayer = GamePlayer(game, TestViewer(game))
 
         gamePlayer.play()
 
         assertTrue(game.isGameOver)
         assertTrue(game.deck.remaining > 0 || game.isDraw)
     }
+}
+
+class TestViewer(override val game: Game): GameView {
+
+    override fun display() {
+
+    }
+
+    override fun showMessage(msg: String) {
+
+    }
+
 }

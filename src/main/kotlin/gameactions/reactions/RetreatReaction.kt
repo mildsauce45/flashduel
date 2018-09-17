@@ -12,6 +12,9 @@ class RetreatReaction(override val player: Player, private val card: Card) : Rea
     override val cardsToDiscard: List<Card>
         get() = listOf(card)
 
+    override val asMessage: String
+        get() = "${player.name} retreats ${card.value} spaces"
+
     override fun canTake(game: Game): Boolean {
         val playerLocation = game.getPlayerLocation(player)
 

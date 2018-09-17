@@ -16,6 +16,9 @@ class AttackAction(override val player: Player, val cards: List<Card>): GameActi
     override val attackCards: List<Card>
         get() = cards
 
+    override val asMessage: String
+        get() = "${player.name} attacks with ${cards.size} ${cards[0].value}'s"
+
     override fun canTake(game: Game): Boolean {
         if (cards.isEmpty())
             return false

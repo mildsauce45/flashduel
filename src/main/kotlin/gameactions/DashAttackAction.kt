@@ -11,6 +11,9 @@ class DashAttackAction(override val player: Player, val dashCard: Card, override
     override val cardsToDiscard: List<Card>
         get() = attackCards.plusElement(dashCard)
 
+    override val asMessage: String
+        get() = "${player.name} dashes with a ${dashCard.value} and attacks with ${attackCards.size} ${attackCards[0].value}'s"
+
     override fun canTake(game: Game): Boolean {
         if (attackCards.isEmpty())
             return false
@@ -38,7 +41,7 @@ class DashAttackAction(override val player: Player, val dashCard: Card, override
         // Since you can't dash through someone, we only care about the closest opponent
         val closestOpponentDistance = getDistanceToClosestOpponent(game)
 
-        return closestOpponentDistance <= dashCard.value
+        return closestOpponentDistance - 1 <= dashCard.value
     }
 
     private fun getDistanceToClosestOpponent(game: Game): Int {

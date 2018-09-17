@@ -3,13 +3,16 @@ package engine
 import gameactions.RequiresReaction
 import gameactions.reactions.TakeHitReaction
 import models.Game
+import views.GameView
 import kotlin.math.abs
 
-class GamePlayer(private val game: Game) {
+class GamePlayer(private val game: Game, private val view: GameView) {
     fun play() {
         game.start()
 
         while (!game.isGameOver) {
+            view.display()
+
             val isPlayerRecovering = game.currentPlayer.isRecovering
 
             game.currentPlayer.strategy.startTurn(game)
@@ -25,6 +28,8 @@ class GamePlayer(private val game: Game) {
                 val action = game.currentPlayer.strategy.getNextAction(game)
                 val target = action.takeAction(game)
 
+                view.showMessage(action.asMessage)
+
                 // If the action requires a response from an opponent
                 if (target != null && action is RequiresReaction) {
                     val reaction = target.strategy.getReaction(action, game)
@@ -36,6 +41,8 @@ class GamePlayer(private val game: Game) {
                     }
 
                     reaction.take(game)
+
+                    view.showMessage(reaction.asMessage)
                 }
             }
 

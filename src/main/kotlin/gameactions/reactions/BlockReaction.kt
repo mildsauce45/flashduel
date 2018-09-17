@@ -9,6 +9,9 @@ class BlockReaction(override val player: Player, private val attackCards: List<C
     override val cardsToDiscard: List<Card>
         get() = player.hand.filter { it.value == attackCards[0].value }.take(attackCards.size)
 
+    override val asMessage: String
+        get() = "${player.name} blocks the attack"
+
     override fun canTake(game: Game): Boolean {
         val attackValue = attackCards[0].value
 

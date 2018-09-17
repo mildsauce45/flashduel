@@ -1,7 +1,10 @@
 package gameaction
 
+import createPlayersFromStrategies
 import createTestGame
 import engine.getPlayerLocation
+import engine.strategies.HumanStrategy
+import engine.strategies.TrainingDummyStrategy
 import gameactions.DashAttackAction
 import models.Card
 import models.Game
@@ -77,6 +80,21 @@ class DashAttackActionTests {
         assertEquals(game.getPlayerLocation(game.players[0]), 8)
         assertTrue(game.isGameOver)
         assertFalse(game.players[1].isAlive)
+    }
+
+    @Test
+    fun test_bug_the_first() {
+        val game = createTestGame {
+            createPlayersFromStrategies(listOf(HumanStrategy(), TrainingDummyStrategy()))
+        }
+
+        // P1 - Human on 8, P2 - Training Dummy on 13
+        game.board.movePlayer(0, 8)
+        game.board.movePlayer(1, -4)
+
+        val action = DashAttackAction(game.players[0], Card(4), listOf(Card(1), Card(1)))
+
+        assertTrue(action.canTake(game))
     }
 
     @Test
