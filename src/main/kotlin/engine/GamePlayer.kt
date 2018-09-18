@@ -3,59 +3,101 @@ package engine
 import gameactions.RequiresReaction
 import gameactions.reactions.TakeHitReaction
 import models.Game
+import models.GameState
+import models.Player
 import views.GameView
 import kotlin.math.abs
 
 class GamePlayer(private val game: Game, private val view: GameView) {
+    private var _currentTarget: Player? = null
+    private var _currentAction: RequiresReaction? = null
+
     fun play() {
-        game.start()
-
         while (!game.isGameOver) {
-            view.display()
-
-            val isPlayerRecovering = game.currentPlayer.isRecovering
-
-            game.currentPlayer.strategy.startTurn(game)
-
-            if (!isPlayerRecovering) {
-                // Some strategies cause cards to be drawn at the start of the turn, so check for TimeOver
-                if (game.isTimeOver) {
-                    doTimeOver()
-                    continue
-                }
-
-                // Get the current players action
-                val action = game.currentPlayer.strategy.getNextAction(game)
-                val target = action.takeAction(game)
-
-                view.showMessage(action.asMessage)
-
-                // If the action requires a response from an opponent
-                if (target != null && action is RequiresReaction) {
-                    val reaction = target.strategy.getReaction(action, game)
-
-                    // Some strategies require cards to be drawn while getting a reaction, so check for TimeOver
-                    if (game.isTimeOver) {
-                        doTimeOver()
-                        continue
-                    }
-
-                    reaction.take(game)
-
-                    view.showMessage(reaction.asMessage)
-                }
+            val nextState = when (game.currentState) {
+                GameState.START_GAME -> startGame()
+                GameState.START_TURN -> startTurn()
+                GameState.GET_ACTION -> getAction()
+                GameState.GET_RESPONSE -> getResponse()
+                GameState.END_TURN -> endTurn()
+                GameState.TIME_OVER -> doTimeOver()
             }
 
-            game.currentPlayer.drawToFive(game)
-
-            if (game.isTimeOver)
-                doTimeOver()
-
-            game.switchPlayer()
+            game.stateTransition(nextState)
         }
     }
 
-    private fun doTimeOver() {
+    private fun startGame(): GameState {
+        game.start()
+        return GameState.START_TURN
+    }
+
+    private fun startTurn(): GameState {
+        view.display()
+
+        val isPlayerRecovering = game.currentPlayer.isRecovering
+
+        game.currentPlayer.strategy.startTurn(game)
+
+        return when {
+            isPlayerRecovering -> GameState.END_TURN
+            else -> GameState.GET_ACTION
+        }
+    }
+
+    private fun getAction(): GameState {
+        lateinit var nextState: GameState
+
+        // Some strategies cause cards to be drawn at the start of the turn, so check for TimeOver
+        if (game.isTimeOver) {
+            nextState = GameState.TIME_OVER
+        } else {
+
+            // Get the current players action
+            val action = game.currentPlayer.strategy.getNextAction(game)
+            _currentTarget = action.takeAction(game)
+
+            view.showMessage(action.asMessage)
+
+            nextState = when {
+                _currentTarget != null && action is RequiresReaction -> GameState.GET_RESPONSE
+                else -> GameState.END_TURN
+            }
+
+            if (action is RequiresReaction)
+                _currentAction = action
+        }
+
+        return nextState
+    }
+
+    private fun getResponse(): GameState {
+        // Previous state should verify these values are valid, otherwise we should'nt be here
+        val reaction = _currentTarget!!.strategy.getReaction(_currentAction!!, game)
+
+        // Some strategies require cards to be drawn while getting a reaction, so check for TimeOver
+        return if (game.isTimeOver) {
+            GameState.TIME_OVER
+        } else {
+            reaction.take(game)
+            view.showMessage(reaction.asMessage)
+
+            GameState.END_TURN
+        }
+    }
+
+    private fun endTurn(): GameState {
+        game.currentPlayer.drawToFive(game)
+
+        return if (game.isTimeOver)
+            GameState.TIME_OVER
+        else {
+            game.switchPlayer()
+            GameState.START_TURN
+        }
+    }
+
+    private fun doTimeOver(): GameState {
         // TODO: make it work for games with 4 players
         val distance = abs(game.getPlayerLocation(game.players[0]) - game.getPlayerLocation(game.players[1]))
 
@@ -68,6 +110,8 @@ class GamePlayer(private val game: Game, private val view: GameView) {
             cardsDiff < 0 -> TakeHitReaction(game.players[0]).take(game)
             else -> TakeHitReaction(game.players[1]).take(game)
         }
+
+        return GameState.START_TURN
     }
 
     private fun checkAdvancementAmount() {

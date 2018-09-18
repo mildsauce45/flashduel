@@ -26,7 +26,7 @@ class Game(val players: List<Player>, val deck: Deck = Deck(), val board: Board 
     }
 
     fun start() {
-        if (currentState == GameState.START_GAME) {
+        if (_currentPlayerIndex == -1) {
             // Draw everyone's cards
             val random = Random()
 
@@ -38,8 +38,11 @@ class Game(val players: List<Player>, val deck: Deck = Deck(), val board: Board 
                     players[pi].draw(deck.draw())
                 }
             }
-
-            _gameState = GameState.START_TURN
         }
+    }
+
+    fun stateTransition(newState: GameState) {
+        if (currentState != newState)
+            _gameState = newState
     }
 }

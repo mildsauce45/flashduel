@@ -6,5 +6,5 @@ enum class GameState {
     GET_ACTION,
     GET_RESPONSE,
     END_TURN,
-    END_GAME
+    TIME_OVER
 }

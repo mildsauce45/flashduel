@@ -11,7 +11,6 @@ import views.GameView
 
 class GamePlayerTests {
     @Test
-    @Ignore
     fun test_plays_game() {
         val game = createTestGame {
             createPlayersFromStrategies(listOf(TrainingDummyStrategy(), TrainingDummyStrategy()))
@@ -22,7 +21,7 @@ class GamePlayerTests {
         gamePlayer.play()
 
         assertTrue(game.isGameOver)
-        assertTrue(game.deck.remaining > 0 || game.isDraw)
+        assertTrue(game.isDraw || game.players.count { !it.isAlive } == 1)
     }
 }
 

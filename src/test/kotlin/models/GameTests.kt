@@ -14,7 +14,6 @@ class GameTests {
 
         game.start()
 
-        assertEquals(game.currentState, GameState.START_TURN)
         assertEquals(game.players[0].hand.size, Player.INITIAL_HAND_SIZE)
         assertEquals(game.players[1].hand.size, Player.INITIAL_HAND_SIZE)
 
@@ -26,7 +25,6 @@ class GameTests {
 
         assertEquals(game.currentPlayer, currentPlayer)
         assertEquals(game.deck.remaining, deckSize)
-        assertEquals(game.currentState, GameState.START_TURN)
     }
 
     @Test

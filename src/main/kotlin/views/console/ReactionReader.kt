@@ -20,7 +20,7 @@ fun readReaction(player: Player, attackCards: List<Card>, game: Game): Reaction 
 
             println("Retreat with what value card?")
 
-            var card = readSingleCard(player)
+            val card = readSingleCard(player)
             if (card != null) {
                 val reaction = RetreatReaction(player, card)
                 if (reaction.canTake(game))
