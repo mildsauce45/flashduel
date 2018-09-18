@@ -7,6 +7,7 @@ import models.Game
 import models.Player
 import views.console.displayHand
 import views.console.readGameAction
+import views.console.readReaction
 
 class HumanStrategy: PlayerStrategy {
 
@@ -19,7 +20,7 @@ class HumanStrategy: PlayerStrategy {
     }
 
     override fun getNextAction(game: Game): GameAction {
-        // TODO: Not assume we're getting this from commandline
+        // TODO: Not assume we're getting this from command line
         while (true) {
             displayHand(player)
 
@@ -33,6 +34,16 @@ class HumanStrategy: PlayerStrategy {
     }
 
     override fun getReaction(action: RequiresReaction, game: Game): Reaction {
-        throw NotImplementedError()
+        // TODO: Not assume we're getting this form the command line
+        while (true) {
+            displayHand(player)
+
+            val reaction = readReaction(player, action.attackCards, game)
+
+            if (reaction.canTake(game))
+                return reaction
+            else
+                println("Cannot take that reaction")
+        }
     }
 }

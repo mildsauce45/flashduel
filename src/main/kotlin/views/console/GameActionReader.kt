@@ -108,7 +108,7 @@ private fun readInt(): Int {
     }
 }
 
-private fun readSingleCard(player: Player): Card? {
+fun readSingleCard(player: Player): Card? {
     val cardValue = readInt()
 
     return player.hand.firstOrNull { it.value == cardValue }
