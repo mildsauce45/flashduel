@@ -17,10 +17,11 @@ fun <T> List<T>.filterOutFirst(toExclude: T): List<T> {
 
     var skipped = false
     for (t in this) {
-        if (t != toExclude || !skipped) {
+        if (t != toExclude || !skipped)
             result.add(t)
+
+        if (t == toExclude)
             skipped = true
-        }
     }
 
     return result
