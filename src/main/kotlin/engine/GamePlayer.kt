@@ -25,6 +25,13 @@ class GamePlayer(private val game: Game, private val view: GameView) {
 
             game.stateTransition(nextState)
         }
+
+        // TODO make this handle more than 2 players
+        when {
+            game.isDraw -> view.showMessage("Game ends in a draw")
+            game.players[0].isAlive -> view.showMessage("${game.players[0].name} wins!")
+            game.players[1].isAlive -> view.showMessage("${game.players[1].name} wins!")
+        }
     }
 
     private fun startGame(): GameState {
@@ -98,11 +105,16 @@ class GamePlayer(private val game: Game, private val view: GameView) {
     }
 
     private fun doTimeOver(): GameState {
+        view.showMessage("Game ending due to time")
+
         // TODO: make it work for games with 4 players
         val distance = abs(game.getPlayerLocation(game.players[0]) - game.getPlayerLocation(game.players[1]))
 
         val p1Cards = game.players[0].hand.filter { it.value == distance }
         val p2Cards = game.players[1].hand.filter { it.value == distance }
+
+        view.showMessage("${game.players[0].name} can attack with ${p1Cards.size} cards")
+        view.showMessage("${game.players[1].name} can attack with ${p2Cards.size} cards")
 
         val cardsDiff = p1Cards.size - p2Cards.size
         when {
@@ -121,8 +133,8 @@ class GamePlayer(private val game: Game, private val view: GameView) {
         val advDiff = p1Location - (17 - p2Location)
         when {
             advDiff == 0 -> game.isDraw = true
-            advDiff < 0 -> TakeHitReaction(game.players[0]).take(game)
-            else -> TakeHitReaction(game.players[1]).take(game)
+            advDiff < 0 -> { view.showMessage("${game.players[1].name} advanced more"); TakeHitReaction(game.players[0]).take(game) }
+            else -> { view.showMessage("${game.players[0].name} advanced more"); TakeHitReaction(game.players[1]).take(game) }
         }
     }
 }

@@ -17,18 +17,18 @@ fun readReaction(player: Player, attackCards: List<Card>, game: Game): Reaction 
             val bool = readYN()
             if (bool)
                 return blockReaction
-
-            println("Retreat with what value card?")
-
-            val card = readSingleCard(player)
-            if (card != null) {
-                val reaction = RetreatReaction(player, card)
-                if (reaction.canTake(game))
-                    return reaction
-            }
-
-            return TakeHitReaction(player)
         }
+
+        println("Retreat with what value card?")
+
+        val card = readSingleCard(player)
+        if (card != null) {
+            val reaction = RetreatReaction(player, card)
+            if (reaction.canTake(game))
+                return reaction
+        }
+
+        return TakeHitReaction(player)
     }
 }
 
