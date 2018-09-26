@@ -96,6 +96,9 @@ class GamePlayer(private val game: Game, private val view: GameView) {
     private fun endTurn(): GameState {
         game.currentPlayer.drawToFive(game)
 
+        for (p in game.players)
+            p.restoreAbilities()
+
         return if (game.isTimeOver)
             GameState.TIME_OVER
         else {

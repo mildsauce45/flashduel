@@ -10,6 +10,8 @@ import models.Player
 import kotlin.math.abs
 
 class AttackAction(override val player: Player, val cards: List<Card>): GameAction, RequiresReaction {
+    var isBlockable = true
+
     override val cardsToDiscard: List<Card>
         get() = cards
 

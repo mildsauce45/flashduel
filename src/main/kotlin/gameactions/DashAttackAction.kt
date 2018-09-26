@@ -8,6 +8,8 @@ import models.Player
 import kotlin.math.abs
 
 class DashAttackAction(override val player: Player, val dashCard: Card, override val attackCards: List<Card>) : GameAction, RequiresReaction {
+    var canRetreat = true
+
     override val cardsToDiscard: List<Card>
         get() = attackCards.plusElement(dashCard)
 

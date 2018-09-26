@@ -15,7 +15,7 @@ import models.Player
 // ** Your turn (Reactions) **
 // 1) When attacked or dash attacked, draws an extra card, then blocks, if possible
 // 2) If it cannot block it retreats with the extra card it just drew
-class TrainingDummyStrategy : PlayerStrategy {
+open class TrainingDummyStrategy : PlayerStrategy {
     private lateinit var _thisTurnsCard: Card
     override lateinit var player: Player
 

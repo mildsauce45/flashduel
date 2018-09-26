@@ -3,9 +3,10 @@ package models
 import engine.strategies.HumanStrategy
 import engine.strategies.PlayerStrategy
 import engine.Direction
+import models.abilities.Ability
 import java.util.*
 
-class Player(val name: String, val orientation: Direction, val strategy: PlayerStrategy = HumanStrategy()) {
+class Player(val name: String, val orientation: Direction, val strategy: PlayerStrategy = HumanStrategy(), val abilities: List<Ability> = emptyList()) {
     companion object {
         const val INITIAL_HAND_SIZE = 5
     }
@@ -31,5 +32,10 @@ class Player(val name: String, val orientation: Direction, val strategy: PlayerS
 
     fun takeHit() {
         hitsRemaining -= 1
+    }
+
+    fun restoreAbilities() {
+        for (a in abilities)
+            a.usedThisTurn = false
     }
 }
