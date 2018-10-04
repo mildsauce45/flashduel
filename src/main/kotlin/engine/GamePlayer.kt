@@ -1,10 +1,13 @@
 package engine
 
+import gameactions.GameAction
 import gameactions.RequiresReaction
+import gameactions.reactions.Reaction
 import gameactions.reactions.TakeHitReaction
 import models.Game
 import models.GameState
 import models.Player
+import models.abilities.AbilityContext
 import views.GameView
 import kotlin.math.abs
 
@@ -44,13 +47,15 @@ class GamePlayer(private val game: Game, private val view: GameView) {
 
         val isPlayerRecovering = game.currentPlayer.isRecovering
 
+        triggerAbilities(game.currentPlayer, null, null)
+
         game.currentPlayer.strategy.startTurn(game)
 
         return when {
             isPlayerRecovering -> GameState.END_TURN
             else -> GameState.GET_ACTION
         }
-    }
+}
 
     private fun getAction(): GameState {
         lateinit var nextState: GameState
@@ -63,6 +68,8 @@ class GamePlayer(private val game: Game, private val view: GameView) {
             // Get the current players action
             val action = game.currentPlayer.strategy.getNextAction(game)
             _currentTarget = action.takeAction(game)
+
+            triggerAbilities(game.currentPlayer, action, null)
 
             view.showMessage(action.asMessage)
 
@@ -80,7 +87,11 @@ class GamePlayer(private val game: Game, private val view: GameView) {
 
     private fun getResponse(): GameState {
         // Previous state should verify these values are valid, otherwise we should'nt be here
+        triggerAbilities(_currentTarget!!, _currentAction!! as GameAction, null)
+
         val reaction = _currentTarget!!.strategy.getReaction(_currentAction!!, game)
+
+        /// TODO: Does any player get to react to the reaction?
 
         // Some strategies require cards to be drawn while getting a reaction, so check for TimeOver
         return if (game.isTimeOver) {
@@ -108,7 +119,9 @@ class GamePlayer(private val game: Game, private val view: GameView) {
     }
 
     private fun doTimeOver(): GameState {
+        view.display()
         view.showMessage("Game ending due to time")
+        view.showMessage("")
 
         // TODO: make it work for games with 4 players
         val distance = abs(game.getPlayerLocation(game.players[0]) - game.getPlayerLocation(game.players[1]))
@@ -116,6 +129,12 @@ class GamePlayer(private val game: Game, private val view: GameView) {
         val p1Cards = game.players[0].hand.filter { it.value == distance }
         val p2Cards = game.players[1].hand.filter { it.value == distance }
 
+        val p1Hand = game.players[0].hand.joinToString(",") { it.value.toString() }
+        val p2Hand = game.players[1].hand.joinToString(",") { it.value.toString() }
+
+        view.showMessage("${game.players[0].name}'s hand: $p1Hand")
+        view.showMessage("${game.players[1].name}'s hand: $p2Hand")
+        view.showMessage("")
         view.showMessage("${game.players[0].name} can attack with ${p1Cards.size} cards")
         view.showMessage("${game.players[1].name} can attack with ${p2Cards.size} cards")
 
@@ -138,6 +157,20 @@ class GamePlayer(private val game: Game, private val view: GameView) {
             advDiff == 0 -> game.isDraw = true
             advDiff < 0 -> { view.showMessage("${game.players[1].name} advanced more"); TakeHitReaction(game.players[0]).take(game) }
             else -> { view.showMessage("${game.players[0].name} advanced more"); TakeHitReaction(game.players[1]).take(game) }
+        }
+    }
+
+    private fun triggerAbilities(player: Player, action: GameAction?, reaction: Reaction?) {
+        val context = AbilityContext(game, action, reaction)
+
+        val usableAbilities = player.abilities.filter { it.canUse(context) }
+
+        for (a in usableAbilities) {
+            if (player.strategy.useAbility(a)) {
+                view.showMessage("${player.name} uses ${a.name}")
+                a.use(context)
+                break // One ability per turn
+            }
         }
     }
 }

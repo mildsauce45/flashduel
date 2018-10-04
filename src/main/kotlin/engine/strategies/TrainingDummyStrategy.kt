@@ -6,6 +6,7 @@ import gameactions.reactions.*
 import models.Card
 import models.Game
 import models.Player
+import models.abilities.Ability
 
 // ** Bots turn (GameActions) **
 // 1) Attacks if it can, always powering up with pairs, triples, etc
@@ -27,6 +28,9 @@ open class TrainingDummyStrategy : PlayerStrategy {
         player.draw(_thisTurnsCard)
     }
 
+    override fun useAbility(ability: Ability): Boolean {
+        return false
+    }
     override fun getNextAction(game: Game): GameAction {
         val attack = getAttackAction(game)
         val push = getPushAction()

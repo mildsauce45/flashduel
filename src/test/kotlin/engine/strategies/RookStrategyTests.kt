@@ -2,14 +2,14 @@ package engine.strategies
 
 import createTestGame
 import engine.Direction
-import gameactions.AttackAction
-import gameactions.DashAttackAction
 import models.*
+import models.abilities.AbilityContext
 import models.abilities.rook.*
 import org.junit.Assert.*
 import org.junit.Test
 
 class RookStrategyTests {
+
     @Test
     fun test_uses_thunderclap() {
         val game = createRookTestGame(listOf(2, 1, 2, 1, 3, 3, 3, 3, 3, 3, 4))
@@ -22,13 +22,9 @@ class RookStrategyTests {
 
         val action = game.currentPlayer.strategy.getNextAction(game)
 
-        when (action) {
-            is DashAttackAction -> assertFalse(action.canRetreat)
-            else -> fail("We should have gotten a dash attack here")
-        }
+        triggerAbilities(AbilityContext(game, action, null))
 
         val tc = game.currentPlayer.abilities.first { it is Thunderclap }
-
         assertTrue(tc.usedThisTurn)
     }
 
@@ -44,13 +40,9 @@ class RookStrategyTests {
 
         val action = game.currentPlayer.strategy.getNextAction(game)
 
-        when (action) {
-            is AttackAction -> assertFalse(action.isBlockable)
-            else -> fail("Should have an attack action here")
-        }
+        triggerAbilities(AbilityContext(game, action, null))
 
         val wc = game.currentPlayer.abilities.first { it is WindmillCrusher }
-
         assertTrue(wc.usedThisTurn)
     }
 
@@ -72,5 +64,17 @@ class RookStrategyTests {
         return listOf(
                 Player("Player 1", Direction.RIGHT, HumanStrategy()),
                 Player("Rook", Direction.LEFT, RookStrategy(), listOf(Thunderclap(), WindmillCrusher(), RockArmor())))
+    }
+
+    private fun triggerAbilities(context: AbilityContext) {
+        val player = context.game.currentPlayer
+        val usableAbilities = player.abilities.filter { it.canUse(context) }
+
+        for (a in usableAbilities) {
+            if (player.strategy.useAbility(a)) {
+                a.use(context)
+                break // One ability per turn
+            }
+        }
     }
 }

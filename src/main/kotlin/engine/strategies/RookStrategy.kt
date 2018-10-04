@@ -4,6 +4,7 @@ import gameactions.GameAction
 import gameactions.RequiresReaction
 import gameactions.reactions.Reaction
 import models.Game
+import models.abilities.Ability
 import models.abilities.AbilityContext
 
 /**
@@ -11,17 +12,7 @@ import models.abilities.AbilityContext
  * and uses them whenever possible
  */
 class RookStrategy: TrainingDummyStrategy() {
-    override fun getNextAction(game: Game): GameAction {
-        val gameAction = super.getNextAction(game)
-
-        val context = AbilityContext(game, gameAction)
-
-        player.abilities.firstOrNull { it.canUse(context) }?.use(context)
-
-        return gameAction
-    }
-
-    override fun getReaction(action: RequiresReaction, game: Game): Reaction {
-        return super.getReaction(action, game)
+    override fun useAbility(ability: Ability): Boolean {
+        return true
     }
 }

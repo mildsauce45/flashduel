@@ -6,7 +6,11 @@ import models.abilities.Ability
 import models.abilities.AbilityContext
 import models.abilities.Trigger
 
-class WindmillCrusher: Ability("Windmill Crusher", listOf(Trigger.ATTACK, Trigger.CUSTOM), GameState.GET_ACTION) {
+class WindmillCrusher: Ability(
+        "Windmill Crusher",
+        "When you attack with 1s, the attack cannot be blocked",
+        listOf(Trigger.ATTACK, Trigger.CUSTOM),
+        GameState.GET_ACTION) {
     override fun shouldTriggerCustom(context: AbilityContext): Boolean {
         if (context.action == null || context.action !is AttackAction)
             return false

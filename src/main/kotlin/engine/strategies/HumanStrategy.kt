@@ -5,6 +5,7 @@ import gameactions.RequiresReaction
 import gameactions.reactions.Reaction
 import models.Game
 import models.Player
+import models.abilities.Ability
 import views.console.displayHand
 import views.console.readGameAction
 import views.console.readReaction
@@ -45,5 +46,9 @@ class HumanStrategy: PlayerStrategy {
             else
                 println("Cannot take that reaction")
         }
+    }
+
+    override fun useAbility(ability: Ability): Boolean {
+        return false
     }
 }
